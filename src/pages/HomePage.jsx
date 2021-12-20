@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import InputField from "../components/InputField";
 import Form from "../components/Form";
 import UserInformation from "../components/UserInformation";
+import { Link } from "react-router-dom";
+import { CustomerContext } from "../App";
+
+
 
 const url = "https://frebi.willandskill.eu/api/v1/customers";
 const token = localStorage.getItem("webb21-js3");
@@ -20,7 +24,7 @@ export default function HomePage() {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  const [customerList, setCustomerList] = useState(null);
+  const {customerList, setCustomerList} = useContext(CustomerContext)
 
   useEffect(() => {
     renderCustomerList();
@@ -57,92 +61,87 @@ export default function HomePage() {
   return (
     <div>
       <UserInformation />
-      <Form handleOnSubmit={handleOnSubmit}>
-        <InputField
-          type="text"
-          placeholder="Företagsnamn"
-          value={name}
-          setValue={setName}
-        />
-        <br />
-        <InputField
-          type="text"
-          placeholder="Organisationsnummer"
-          value={organisationNr}
-          setValue={setOrganisationNr}
-        />
-        <br />
-        <InputField
-          type="text"
-          placeholder="Momsnummer"
-          value={vatNr}
-          setValue={setVatNr}
-        />
-        <br />
-        <InputField
-          type="text"
-          placeholder="Kunds reference"
-          value={reference}
-          setValue={setReference}
-        />
-        <br />
-        <InputField
-          type="text"
-          placeholder="Betalningsvillkor"
-          value={paymentTerm}
-          setValue={setPaymentTerm}
-        />
-        <br />
-        <InputField
-          type="text"
-          placeholder="Hemsida"
-          value={website}
-          setValue={setWebsite}
-        />
-        <br />
-        <InputField
-          type="text"
-          placeholder="E-mail"
-          value={email}
-          setValue={setEmail}
-        />
-        <br />
-        <InputField
-          type="text"
-          placeholder="Telefonnummer"
-          value={phoneNumber}
-          setValue={setPhoneNumber}
-        />
-        <br />
-        <button type="submit">Add customer</button>
-      </Form>
-      {customerList &&
-        customerList.map((item, index) => {
-          return (
-            <div key={index}>
-              <h2>
-                {item.name} - {item.organisationNr}
-              </h2>
-              <p>
-                {item.reference} | {item.email} | {item.phoneNumber}
-              </p>
-            </div>
-          );
-        })}
-      <ul>
-        <li>
-          VG: Validera så att VATnr fältet innehåller "SE" och därefter 10
-          siffror.
-        </li>
-        <li>
-          Visa vilken användare som är inloggad (api/v1/me)
+          <Form handleOnSubmit={handleOnSubmit}>
+            <InputField
+              type="text"
+              placeholder="Företagsnamn"
+              value={name}
+              setValue={setName}
+            />
+            <br />
+            <InputField
+              type="text"
+              placeholder="Organisationsnummer"
+              value={organisationNr}
+              setValue={setOrganisationNr}
+            />
+            <br />
+            <InputField
+              type="text"
+              placeholder="Momsnummer"
+              value={vatNr}
+              setValue={setVatNr}
+            />
+            <br />
+            <InputField
+              type="text"
+              placeholder="Kunds reference"
+              value={reference}
+              setValue={setReference}
+            />
+            <br />
+            <InputField
+              type="text"
+              placeholder="Betalningsvillkor"
+              value={paymentTerm}
+              setValue={setPaymentTerm}
+            />
+            <br />
+            <InputField
+              type="text"
+              placeholder="Hemsida"
+              value={website}
+              setValue={setWebsite}
+            />
+            <br />
+            <InputField
+              type="text"
+              placeholder="E-mail"
+              value={email}
+              setValue={setEmail}
+            />
+            <br />
+            <InputField
+              type="text"
+              placeholder="Telefonnummer"
+              value={phoneNumber}
+              setValue={setPhoneNumber}
+            />
+            <br />
+            <button type="submit">Add customer</button>
+          </Form>
+          {customerList &&
+            customerList.map((item, index) => {
+              return (
+                <div key={index}>
+                  <Link to={`/customer/${index}`}>
+                      <h2>
+                        {item.name} - {item.organisationNr}
+                      </h2>
+                      {console.log(customerList)}
+                  </Link>
+                  <p>
+                    {item.reference} | {item.email} | {item.phoneNumber}
+                  </p>
+                </div>
+              );
+            })}
           <ul>
             <li>
-              Visa den inloggade användarens email, förnamn och efternamn.
+              VG: Validera så att VATnr fältet innehåller "SE" och därefter 10
+              siffror.
             </li>
           </ul>
-        </li>
-      </ul>
     </div>
   );
 }
