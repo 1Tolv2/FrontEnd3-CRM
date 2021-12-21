@@ -49,13 +49,18 @@ export default function CustomerDetailPage() {
     const payload = {};
     console.log(stateList);
 
-    //checks if the value is added and returns
+    //checks if the value is added 
     const target = e.target;
     for (let i = 0; i < target.length; i++) {
       console.log(target[i].value);
       if (target[i].value) {
         let temp = stateList[i];
-        payload[temp] = target[i].value;
+        if (temp == "vatNr") {
+          const VATnr = e.target[i].value;
+          const regex = /^SE[0-9]{10}$/; //First is SE followed by 10 numbers between 0-9
+          regex.test(VATnr) ? (payload[temp] = target[i].value) : alert("Felaktigt format för Momsnummer. Vänligen ange i SExxxxxxxxxx (10 siffror).");
+        } else if (temp != "VATnr"){
+        payload[temp] = target[i].value}
       }
     }
     console.log(payload);
