@@ -1,6 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import InputField from "../components/InputField";
-import Form from "../components/Form";
+import React, { useContext, useEffect } from "react";
 import UserInformation from "../components/UserInformation";
 import { Link } from "react-router-dom";
 import { CustomerContext } from "../App";
@@ -17,7 +15,7 @@ export default function HomePage() {
   const { customerList, setCustomerList } = useContext(CustomerContext);
 
   useEffect(() => {
-    renderCustomerList();
+    renderCustomerList()
   }, []);
 
   function renderCustomerList() {
@@ -54,8 +52,6 @@ export default function HomePage() {
         payload[temp] = target[i].value;
       }
     }
-    console.log(payload);
-    console.log(payload);
     fetch(url, {
       method: "POST",
       headers: headers,
