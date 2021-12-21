@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function Form(props) {
+export default function Form({handleOnSubmit, children}) {
 
     return (
-        <form onSubmit={props.handleOnSubmit}>
-             {props.children}
+        <form onSubmit={handleOnSubmit}>
+             {children}
          </form>
     )
 }
