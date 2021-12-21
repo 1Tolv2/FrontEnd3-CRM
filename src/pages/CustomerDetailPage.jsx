@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { CustomerContext } from "../App";
 import CustomCustomerForm from "../components/CustomCustomerForm";
 
@@ -71,6 +71,7 @@ export default function CustomerDetailPage() {
   return (
     <div>
       {params.id}
+      <Link to="/home">Tillbaka</Link>
       {customer && (
         <>
           <h3>{customer.name}</h3>
