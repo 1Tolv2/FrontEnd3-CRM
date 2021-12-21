@@ -15,7 +15,7 @@ fetch(url, {
     }, [])
     return (
         <div>
-            {console.log(user)}
+            {/* {console.log(user)} */}
             {user && (<>
             <p>Du är inloggad som <strong>{user.firstName} {user.lastName} - {user.email}</strong></p>
             </>)}
