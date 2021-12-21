@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { CustomerContext } from "../App";
 import CustomCustomerForm from "../components/CustomCustomerForm";
+import { ValidateVATnr } from "../components/ValidateVATnr";
 
 export default function CustomerDetailPage() {
   const [customer, setCustomer] = useState(null);
@@ -56,9 +57,9 @@ export default function CustomerDetailPage() {
       if (target[i].value) {
         let temp = stateList[i];
         if (temp == "vatNr") {
-          const VATnr = e.target[i].value;
-          const regex = /^SE[0-9]{10}$/; //First is SE followed by 10 numbers between 0-9
-          regex.test(VATnr) ? (payload[temp] = target[i].value) : alert("Felaktigt format för Momsnummer. Vänligen ange i SExxxxxxxxxx (10 siffror).");
+          const VATnr = target[i].value;
+          console.log(VATnr)
+          payload[temp] = ValidateVATnr(VATnr)          
         } else if (temp != "VATnr"){
         payload[temp] = target[i].value}
       }

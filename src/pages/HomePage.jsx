@@ -3,6 +3,7 @@ import UserInformation from "../components/UserInformation";
 import { Link } from "react-router-dom";
 import { CustomerContext } from "../App";
 import CustomCustomerForm from "../components/CustomCustomerForm";
+import { ValidateVATnr } from "../components/ValidateVATnr";
 
 const url = "https://frebi.willandskill.eu/api/v1/customers";
 const token = localStorage.getItem("webb21-js3");
@@ -51,9 +52,9 @@ export default function HomePage() {
         let temp = stateList[i];
         
         if (temp == "vatNr") {// checks if the VATnr is in the correct format
-          const VATnr = e.target[i].value;
-          const regex = /^SE[0-9]{10}$/; //First is SE followed by 10 numbers between 0-9
-          regex.test(VATnr) ? (payload[temp] = target[i].value) : alert("Felaktigt format för Momsnummer. Vänligen ange i SExxxxxxxxxx (10 siffror).");
+          const VATnr = target[i].value;
+          console.log(VATnr)
+          payload[temp] = ValidateVATnr(VATnr) 
         } else if (temp != "VATnr"){
         payload[temp] = target[i].value}
       }
@@ -93,12 +94,6 @@ export default function HomePage() {
             </div>
           );
         })}
-      <ul>
-        <li>
-          VG: Validera så att VATnr fältet innehåller "SE" och därefter 10
-          siffror.
-        </li>
-      </ul>
     </div>
   );
 }
