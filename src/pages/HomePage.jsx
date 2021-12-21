@@ -1,11 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import InputField from "../components/InputField";
 import Form from "../components/Form";
 import UserInformation from "../components/UserInformation";
 import { Link } from "react-router-dom";
 import { CustomerContext } from "../App";
-
-
 
 const url = "https://frebi.willandskill.eu/api/v1/customers";
 const token = localStorage.getItem("webb21-js3");
@@ -124,11 +122,10 @@ export default function HomePage() {
             customerList.map((item, index) => {
               return (
                 <div key={index}>
-                  <Link to={`/customer/${index}`}>
+                  <Link to={`/customer/${item.id}`}>
                       <h2>
                         {item.name} - {item.organisationNr}
                       </h2>
-                      {console.log(customerList)}
                   </Link>
                   <p>
                     {item.reference} | {item.email} | {item.phoneNumber}
