@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import CustomerDetailPage from "./pages/CustomerDetailPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
+import UserActivationPage from "./pages/UserActivationPage";
 import UserCreatePage from "./pages/UserCreatePage";
 
 const CustomerContext = createContext([]);
@@ -18,6 +19,7 @@ function App() {
           <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="/create-user" element={<UserCreatePage />} />
+            <Route path="/login" element={<UserActivationPage />} />
             <Route path="/home" element={<HomePage />} />
             <Route path="/customer/:id" element={<CustomerDetailPage />} />
           </Routes>
