@@ -9,7 +9,7 @@ const CustomerContext = createContext([]);
 const UserContext = createContext([]);
 function App() {
   const [customerList, setCustomerList] = useState(null);
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(null);
   return (
     <div>
       App.js

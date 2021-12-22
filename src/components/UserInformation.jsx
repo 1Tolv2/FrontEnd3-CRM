@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
+import { UserContext } from '../App'
 
 
 export default function UserInformation() {
-    const [user, setUser] = useState(null)
+    const {user, setUser} = useContext(UserContext)
     useEffect(() => {
 const url = "https://frebi.willandskill.eu/api/v1/me"
 const token = localStorage.getItem("webb21-js3")
