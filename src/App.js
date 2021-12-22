@@ -3,8 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import CustomerDetailPage from "./pages/CustomerDetailPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
-import UserActivationPage from "./pages/UserActivationPage";
 import UserCreatePage from "./pages/UserCreatePage";
+import StartPage from "./pages/StartPage";
 
 const CustomerContext = createContext([]);
 const UserContext = createContext([]);
@@ -13,13 +13,12 @@ function App() {
   const [user, setUser] = useState(null);
   return (
     <div>
-      App.js
       <UserContext.Provider value={{ user, setUser }}>
         <CustomerContext.Provider value={{ customerList, setCustomerList }}>
           <Routes>
-            <Route path="/" element={<LoginPage />} />
+            <Route path="/" element={<StartPage />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/create-user" element={<UserCreatePage />} />
-            <Route path="/login" element={<UserActivationPage />} />
             <Route path="/home" element={<HomePage />} />
             <Route path="/customer/:id" element={<CustomerDetailPage />} />
           </Routes>
