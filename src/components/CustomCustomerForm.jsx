@@ -27,26 +27,12 @@ export default function CustomCustomerForm({ handleOnSubmit, buttonText }) {
         setValue={setOrganisationNr}
       />
       <br />
-      {/* <InputField
+      <InputField
               type="text"
               placeholder="Momsnummer"
               value={vatNr}
               setValue={setVatNr}
-            /> */}
-      <input
-        type="text"
-        id="Momsnummer"
-        value={vatNr}
-        placeholder="Momsnummer"
-        onChange={(e) => {
-        //   const VATnr = e.target.value;
-        //   const regex = /^SE[0-9]{10}$/;
-        //   if (VATnr.length == 12){
-        //   VATnr.match(regex) ? setVatNr(e.target.value) : setVatNr("")
-        // }
-          setVatNr(e.target.value)
-        }}
-      />
+            />
       <label htmlFor="Momsnummer"></label>
       <br />
       <InputField
