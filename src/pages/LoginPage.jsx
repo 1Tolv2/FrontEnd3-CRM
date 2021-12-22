@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Form from "../components/Form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import InputField from "../components/InputField";
 
 export default function LoginPage() {
@@ -20,7 +20,6 @@ export default function LoginPage() {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
         const token = data.token;
         localStorage.setItem("webb21-js3", token);
         token && navigate("/home"); //Ser till att du inte navigeras till /home innan du fått en token
@@ -47,6 +46,7 @@ export default function LoginPage() {
         <br />
         <button type="submit">Submit</button>
       </Form>
+      <p>Saknar användare? <Link to="/create-user">Klicka här</Link> för att skapa en.</p>
     </div>
   );
 }
