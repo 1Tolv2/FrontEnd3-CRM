@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { CustomerContext } from "../App";
+import Button from "../components/Button";
 import CustomCustomerForm from "../components/CustomCustomerForm";
 import { ValidateVATnr } from "../components/ValidateVATnr";
 
@@ -81,7 +82,7 @@ export default function CustomerDetailPage() {
       {customer && (
         <>
           <h3>{customer.name}</h3>
-          <button onClick={(e) => handleOnDelete()}>Ta bort kund</button>
+          <Button onClick={(e) => handleOnDelete()}>Ta bort</Button>
           <ul>
             <li>{customer.organisationNr}</li>
             <li>{customer.vatNr}</li>
@@ -93,7 +94,7 @@ export default function CustomerDetailPage() {
           </ul>
           <CustomCustomerForm
             handleOnSubmit={handleOnSubmit}
-            buttonText="Spara Kundinformation"
+            buttonText="Spara"
           />
         </>
       )}

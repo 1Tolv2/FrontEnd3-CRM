@@ -77,7 +77,7 @@ export default function HomePage() {
       <UserInformation />
       <CustomCustomerForm
         handleOnSubmit={handleOnSubmit}
-        buttonText="Lägg till kund"
+        buttonText="Lägg till"
       />
       {customerList &&
         customerList.map((item, index) => {

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import InputField from "./InputField";
 import Form from "./Form";
+import Button from "./Button";
 
 export default function CustomCustomerForm({ handleOnSubmit, buttonText }) {
   const [name, setName] = useState("");
@@ -12,65 +13,73 @@ export default function CustomCustomerForm({ handleOnSubmit, buttonText }) {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   return (
-    <Form handleOnSubmit={handleOnSubmit}>
+    <Form
+      handleOnSubmit={handleOnSubmit}
+      gridColTemplate={"130px auto 130px auto"}
+    >
       <InputField
         type="text"
-        placeholder="Företagsnamn"
+        id="companyName"
         value={name}
         setValue={setName}
+        labelText="Företagsnamn:"
       />
-      <br />
       <InputField
         type="text"
-        placeholder="Organisationsnummer"
+        id="organisationsNr"
         value={organisationNr}
         setValue={setOrganisationNr}
+        labelText="Org.nummer:"
       />
-      <br />
-      <InputField
-              type="text"
-              placeholder="Momsnummer"
-              value={vatNr}
-              setValue={setVatNr}
-            />
-      <label htmlFor="Momsnummer"></label>
-      <br />
       <InputField
         type="text"
-        placeholder="Kunds reference"
+        id="vatNr"
+        value={vatNr}
+        setValue={setVatNr}
+        labelText="Momsnummer:"
+      />
+      <InputField
+        type="text"
+        id="reference"
         value={reference}
         setValue={setReference}
+        labelText="Reference:"
       />
-      <br />
+
       <InputField
         type="text"
-        placeholder="Betalningsvillkor"
+        id="paymentTerm"
         value={paymentTerm}
         setValue={setPaymentTerm}
+        labelText="Betalningsvillkor:"
       />
-      <br />
+
       <InputField
         type="text"
-        placeholder="Hemsida"
+        id="website"
         value={website}
         setValue={setWebsite}
+        labelText="Hemsida:"
       />
-      <br />
+
       <InputField
         type="text"
-        placeholder="E-mail"
+        id="email"
         value={email}
         setValue={setEmail}
+        labelText="E-post:"
       />
-      <br />
+
       <InputField
         type="text"
-        placeholder="Telefonnummer"
+        id="phoneNumber"
         value={phoneNumber}
         setValue={setPhoneNumber}
+        labelText="Tel.nummer:"
       />
-      <br />
-      <button type="submit">{buttonText}</button>
+<br/>
+<br/>
+      <Button type="submit" gridStart={4}>{buttonText}</Button>
     </Form>
   );
 }

@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import Form from "../components/Form";
 import InputField from "../components/InputField";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Button from "../components/Button";
+import Container from "../components/Container";
 
 export default function UserCreatePage() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate()
 
   function handleOnSubmit(e) {
     e.preventDefault();
@@ -27,46 +30,47 @@ export default function UserCreatePage() {
       body: JSON.stringify(payload),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {console.log(data)
+      navigate("/login")});
   }
   return (
-    <div>
+    <Container width={350}>
       <h2>Skapa användare</h2>
       <Form handleOnSubmit={handleOnSubmit}>
         <InputField
           type="text"
           value={firstName}
-          placeholder="Förnamn"
+          id="firstName"
           setValue={setFirstName}
+          labelText="Förnamn:"
         />
-        <br />
         <InputField
           type="text"
           value={lastName}
-          placeholder="Efternamn"
+          id="lastName"
           setValue={setLastName}
+          labelText="Efternamn:"
         />
-        <br />
         <InputField
           type="text"
           value={email}
-          placeholder="Email"
+          id="email"
           setValue={setEmail}
+          labelText="E-post:"
         />
-        <br />
         <InputField
           type="password"
           value={password}
-          placeholder="Password"
+          id="password"
           setValue={setPassword}
+          labelText="Lösenord:"
         />
-        <br />
-        <button type="submit">Submit</button>
+        <Button gridStart={2}>Skapa</Button>
       </Form>
       <p>
-        Redan en användare? <Link to="/">Klicka här</Link> för att komma till
+        Redan en användare? <Link to="/login">Klicka här</Link> för att komma till
         inloggningssidan.
       </p>
-    </div>
+    </Container>
   );
 }

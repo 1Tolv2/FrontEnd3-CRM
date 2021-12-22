@@ -2,11 +2,17 @@ import React, { useState } from "react";
 import Form from "../components/Form";
 import { Link, useNavigate } from "react-router-dom";
 import InputField from "../components/InputField";
+import UserActivation from "../components/UserActivation";
+import Button from "../components/Button";
+import Container from "../components/Container";
+import H1 from "../components/H1";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+UserActivation()
 
   function handleOnSubmit(e) {
     e.preventDefault();
@@ -26,27 +32,28 @@ export default function LoginPage() {
       });
   }
   return (
-    <div>
+    <Container width={350} >
+            <H1>iCRM</H1>
       <Form
-        handleOnSubmit={handleOnSubmit}
+        handleOnSubmit={handleOnSubmit} gridColTemplate={"85px auto"}
       >
         <InputField
           type="text"
           value={email}
-          placeholder="Email"
+          id="email"
           setValue={setEmail}
+          labelText="E-post:"
         />
-        <br />
         <InputField
           type="password"
           value={password}
-          placeholder="Password"
+          id="password"
           setValue={setPassword}
+          labelText="Lösenord:"
         />
-        <br />
-        <button type="submit">Submit</button>
+        <Button gridStart={2}>Logga in</Button>
       </Form>
       <p>Saknar användare? <Link to="/create-user">Klicka här</Link> för att skapa en.</p>
-    </div>
+    </Container>
   );
 }
