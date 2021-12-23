@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import { CustomerContext } from "../App";
 import CustomCustomerForm from "../components/CustomCustomerForm";
 import { ValidateVATnr } from "../components/ValidateVATnr";
+import Container from "../components/Container";
+import Table from "../components/Table";
+import TableBody from "../components/TableBody"
 
 const url = "https://frebi.willandskill.eu/api/v1/customers";
 const token = localStorage.getItem("webb21-js3");
@@ -16,7 +19,7 @@ export default function HomePage() {
   const { customerList, setCustomerList } = useContext(CustomerContext);
 
   useEffect(() => {
-    renderCustomerList()
+    renderCustomerList();
   }, []);
 
   function renderCustomerList() {
@@ -44,19 +47,21 @@ export default function HomePage() {
     const payload = {};
     console.log(stateList);
 
-    //checks what values are added 
+    //checks what values are added
     const target = e.target;
     for (let i = 0; i < target.length; i++) {
       console.log(target[i].value);
       if (target[i].value) {
         let temp = stateList[i];
-        
-        if (temp == "vatNr") {// checks if the VATnr is in the correct format
+
+        if (temp == "vatNr") {
+          // checks if the VATnr is in the correct format
           const VATnr = target[i].value;
-          console.log(VATnr)
-          payload[temp] = ValidateVATnr(VATnr) 
-        } else if (temp != "VATnr"){
-        payload[temp] = target[i].value}
+          console.log(VATnr);
+          payload[temp] = ValidateVATnr(VATnr);
+        } else if (temp != "VATnr") {
+          payload[temp] = target[i].value;
+        }
       }
     }
     console.log(payload);
@@ -74,26 +79,44 @@ export default function HomePage() {
   }
   return (
     <div>
+      <Container width={1200}>
       <UserInformation />
-      <CustomCustomerForm
-        handleOnSubmit={handleOnSubmit}
-        buttonText="Lägg till"
-      />
-      {customerList &&
-        customerList.map((item, index) => {
-          return (
-            <div key={index}>
-              <Link to={`/customer/${item.id}`}>
-                <h2>
-                  {item.name} - {item.organisationNr}
-                </h2>
-              </Link>
-              <p>
-                {item.reference} | {item.email} | {item.phoneNumber}
-              </p>
-            </div>
-          );
-        })}
+        <CustomCustomerForm
+          handleOnSubmit={handleOnSubmit}
+          buttonText="Lägg till"
+        />
+      
+      <Table>
+        <thead>
+          <tr>
+            <th>Företagsnamn</th>
+            <th>Org.nr</th>
+            <th>Reference</th>
+            <th>E-post</th>
+            <th>Tel.nr</th>
+            <th> </th>
+          </tr>
+        </thead>
+        <TableBody>
+          {customerList &&
+            customerList.map((item, index) => {
+              return (
+                <tr key={index}>
+                    <td>{item.name}</td>
+                    <td>{item.organisationNr}</td>
+                    <td>{item.reference}</td>
+                    <td>{item.email}</td>
+                    <td>{item.phoneNumber}</td>
+                    <td>
+                      <Link to={`/customer/${item.id}`}>
+                      &gt;&gt;</Link>
+                    </td>
+                </tr>
+              );
+            })}
+        </TableBody>
+      </Table>
+      </Container>
     </div>
   );
 }

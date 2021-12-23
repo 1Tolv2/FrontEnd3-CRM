@@ -73,7 +73,8 @@ export default function CustomerDetailPage() {
       body: JSON.stringify(payload),
     })
       .then((res) => res.json())
-      .then((data) => setCustomer(data));
+      .then((data) => {console.log(data)
+        setCustomer(data)});
   }
   return (
     <div>
