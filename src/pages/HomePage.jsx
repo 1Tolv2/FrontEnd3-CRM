@@ -64,7 +64,6 @@ export default function HomePage() {
         }
       }
     }
-    console.log(payload);
 
     fetch(url, {
       method: "POST",
@@ -85,7 +84,6 @@ export default function HomePage() {
           handleOnSubmit={handleOnSubmit}
           buttonText="Lägg till"
         />
-      
       <Table>
         <thead>
           <tr>

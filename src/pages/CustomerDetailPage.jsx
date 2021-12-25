@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { CustomerContext } from "../App";
 import Button from "../components/Button";
+import Container from "../components/Container";
 import CustomCustomerForm from "../components/CustomCustomerForm";
 import { ValidateVATnr } from "../components/ValidateVATnr";
 
@@ -19,6 +20,8 @@ export default function CustomerDetailPage() {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
   };
+  console.log(id);
+
 
   function checkCustomerList() {
     setCustomer(customerList.find((item) => item.id == id));
@@ -77,13 +80,13 @@ export default function CustomerDetailPage() {
         setCustomer(data)});
   }
   return (
-    <div>
+    <Container>
       {params.id}
       <Link to="/home">Tillbaka</Link>
       {customer && (
         <>
           <h3>{customer.name}</h3>
-          <Button onClick={(e) => handleOnDelete()}>Ta bort</Button>
+          <Button onClick={handleOnDelete} gridStart={0}>Ta bort</Button>
           <ul>
             <li>{customer.organisationNr}</li>
             <li>{customer.vatNr}</li>
@@ -99,6 +102,6 @@ export default function CustomerDetailPage() {
           />
         </>
       )}
-    </div>
+    </Container>
   );
 }

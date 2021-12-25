@@ -6,6 +6,7 @@ import UserActivation from "../components/UserActivation";
 import Button from "../components/Button";
 import Container from "../components/Container";
 import H1 from "../components/H1";
+import ErrorText from "../components/ErrorText";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -32,7 +33,7 @@ UserActivation()
       });
   }
   return (
-    <Container width={350} >
+    <Container centered width={350} >
             <H1>iCRM</H1>
       <Form
         handleOnSubmit={handleOnSubmit} gridColTemplate={"85px auto"}
@@ -51,7 +52,7 @@ UserActivation()
           setValue={setPassword}
           labelText="Lösenord:"
         />
-        <Button gridStart={2}>Logga in</Button>
+        <Button form gridStart={2}>Logga in</Button>
       </Form>
       <p>Saknar användare? <Link to="/create-user">Klicka här</Link> för att skapa en.</p>
     </Container>

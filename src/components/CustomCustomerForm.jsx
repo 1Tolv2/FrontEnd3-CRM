@@ -45,7 +45,6 @@ export default function CustomCustomerForm({ handleOnSubmit, buttonText }) {
         setValue={setReference}
         labelText="Reference:"
       />
-
       <InputField
         type="text"
         id="paymentTerm"
@@ -53,7 +52,6 @@ export default function CustomCustomerForm({ handleOnSubmit, buttonText }) {
         setValue={setPaymentTerm}
         labelText="Betalningsvillkor:"
       />
-
       <InputField
         type="text"
         id="website"
@@ -61,7 +59,6 @@ export default function CustomCustomerForm({ handleOnSubmit, buttonText }) {
         setValue={setWebsite}
         labelText="Hemsida:"
       />
-
       <InputField
         type="text"
         id="email"
@@ -69,7 +66,6 @@ export default function CustomCustomerForm({ handleOnSubmit, buttonText }) {
         setValue={setEmail}
         labelText="E-post:"
       />
-
       <InputField
         type="text"
         id="phoneNumber"
@@ -77,9 +73,9 @@ export default function CustomCustomerForm({ handleOnSubmit, buttonText }) {
         setValue={setPhoneNumber}
         labelText="Tel.nummer:"
       />
-<br/>
-<br/>
-      <Button type="submit" gridStart={4}>{buttonText}</Button>
+      <Button form type="submit" gridStart={4}>
+        {buttonText}
+      </Button>
     </Form>
   );
 }
