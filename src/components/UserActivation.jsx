@@ -25,12 +25,7 @@ export default function UserActivation() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        navigate("/login");
-      });
-    console.log(payload);}
+      .then(() => navigate("/login"))}
   }, []);
 
   return <></>;
