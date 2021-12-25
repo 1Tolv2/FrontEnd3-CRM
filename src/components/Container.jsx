@@ -1,21 +1,24 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
+
 
 const StyledContainer = styled.div`
-background-color: #f0f0f0;
 width: ${props => props.width}px;
-padding: 5px 5px 5px 5px;
-border: solid grey 1px;
+padding: 5px 10px 5px 10px;
+background-color: white;
+margin: 10px;
 `
 const CenteredContainer = styled(StyledContainer)`
-margin: 100px auto;
+margin: auto;
+
+${(props) => props.float && css`margin: 100px auto`}
 `
 export default function Container(props) {
     return (
         <>
-        {props.centered ? <CenteredContainer width={props.width}>
+        {props.centered ? <CenteredContainer {...props}>
             {props.children}
-        </CenteredContainer> : <StyledContainer>{props.children}</StyledContainer>}
+        </CenteredContainer> : <StyledContainer width={props.width}>{props.children}</StyledContainer>}
         </>
     )
 }

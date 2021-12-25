@@ -12,7 +12,7 @@ function App() {
   const [customerList, setCustomerList] = useState(null);
   const [user, setUser] = useState(null);
   return (
-    <div>
+    <>
       <UserContext.Provider value={{ user, setUser }}>
         <CustomerContext.Provider value={{ customerList, setCustomerList }}>
           <Routes>
@@ -24,7 +24,7 @@ function App() {
           </Routes>
         </CustomerContext.Provider>
       </UserContext.Provider>
-    </div>
+    </>
   );
 }
 

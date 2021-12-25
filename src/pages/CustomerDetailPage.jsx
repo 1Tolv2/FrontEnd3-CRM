@@ -5,6 +5,8 @@ import Button from "../components/Button";
 import Container from "../components/Container";
 import CustomCustomerForm from "../components/CustomCustomerForm";
 import { ValidateVATnr } from "../components/ValidateVATnr";
+import UnorderedList from "../components/UnorderedList";
+import H1 from "../components/H1";
 
 export default function CustomerDetailPage() {
   const [customer, setCustomer] = useState(null);
@@ -21,7 +23,6 @@ export default function CustomerDetailPage() {
     Authorization: `Bearer ${token}`,
   };
   console.log(id);
-
 
   function checkCustomerList() {
     setCustomer(customerList.find((item) => item.id == id));
@@ -54,7 +55,7 @@ export default function CustomerDetailPage() {
     const payload = {};
     console.log(stateList);
 
-    //checks if the value is added 
+    //checks if the value is added
     const target = e.target;
     for (let i = 0; i < target.length; i++) {
       console.log(target[i].value);
@@ -62,10 +63,11 @@ export default function CustomerDetailPage() {
         let temp = stateList[i];
         if (temp == "vatNr") {
           const VATnr = target[i].value;
-          console.log(VATnr)
-          payload[temp] = ValidateVATnr(VATnr)          
-        } else if (temp != "VATnr"){
-        payload[temp] = target[i].value}
+          console.log(VATnr);
+          payload[temp] = ValidateVATnr(VATnr);
+        } else if (temp != "VATnr") {
+          payload[temp] = target[i].value;
+        }
       }
     }
     console.log(payload);
@@ -76,32 +78,45 @@ export default function CustomerDetailPage() {
       body: JSON.stringify(payload),
     })
       .then((res) => res.json())
-      .then((data) => {console.log(data)
-        setCustomer(data)});
+      .then((data) => {
+        console.log(data);
+        setCustomer(data);
+      });
   }
   return (
-    <Container>
-      {params.id}
-      <Link to="/home">Tillbaka</Link>
+    <>
       {customer && (
         <>
-          <h3>{customer.name}</h3>
-          <Button onClick={handleOnDelete} gridStart={0}>Ta bort</Button>
-          <ul>
-            <li>{customer.organisationNr}</li>
-            <li>{customer.vatNr}</li>
-            <li>{customer.reference}</li>
-            <li>{customer.paymentTerm} days</li>
-            <li>{customer.website}</li>
-            <li>{customer.email}</li>
-            <li>{customer.phoneNumber}</li>
-          </ul>
-          <CustomCustomerForm
-            handleOnSubmit={handleOnSubmit}
-            buttonText="Spara"
-          />
+          <Container>
+            <Button>
+              <Link to="/home">&larr; Tillbaka</Link>
+            </Button>
+            <H1>{customer.name}</H1>
+            <Container centered width={100}>
+              <Button delete onClick={handleOnDelete}>
+                Ta bort
+              </Button>
+            </Container>
+          </Container>
+          <Container>
+            <UnorderedList>
+              <li>{customer.organisationNr}</li>
+              <li>{customer.vatNr}</li>
+              <li>{customer.reference}</li>
+              <li>{customer.paymentTerm} days</li>
+              <li>{customer.website}</li>
+              <li>{customer.email}</li>
+              <li>{customer.phoneNumber}</li>
+            </UnorderedList>
+          </Container>
+          <Container>
+            <CustomCustomerForm
+              handleOnSubmit={handleOnSubmit}
+              buttonText="Spara"
+            />
+          </Container>
         </>
       )}
-    </Container>
+    </>
   );
 }

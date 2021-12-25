@@ -33,7 +33,7 @@ UserActivation()
       });
   }
   return (
-    <Container centered width={350} >
+    <Container centered float width={350} >
             <H1>iCRM</H1>
       <Form
         handleOnSubmit={handleOnSubmit} gridColTemplate={"85px auto"}

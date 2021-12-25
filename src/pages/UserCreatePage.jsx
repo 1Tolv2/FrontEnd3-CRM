@@ -34,7 +34,7 @@ export default function UserCreatePage() {
       navigate("/login")});
   }
   return (
-    <Container centered width={350}>
+    <Container centered float width={350}>
       <h2>Skapa användare</h2>
       <Form handleOnSubmit={handleOnSubmit}>
         <InputField

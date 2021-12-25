@@ -6,7 +6,7 @@ import CustomCustomerForm from "../components/CustomCustomerForm";
 import { ValidateVATnr } from "../components/ValidateVATnr";
 import Container from "../components/Container";
 import Table from "../components/Table";
-import TableBody from "../components/TableBody"
+import TableBody from "../components/TableBody";
 
 const url = "https://frebi.willandskill.eu/api/v1/customers";
 const token = localStorage.getItem("webb21-js3");
@@ -77,44 +77,47 @@ export default function HomePage() {
       });
   }
   return (
-    <div>
-      <Container width={1200}>
-      <UserInformation />
-        <CustomCustomerForm
-          handleOnSubmit={handleOnSubmit}
-          buttonText="Lägg till"
-        />
-      <Table>
-        <thead>
-          <tr>
-            <th>Företagsnamn</th>
-            <th>Org.nr</th>
-            <th>Reference</th>
-            <th>E-post</th>
-            <th>Tel.nr</th>
-            <th> </th>
-          </tr>
-        </thead>
-        <TableBody>
-          {customerList &&
-            customerList.map((item, index) => {
-              return (
-                <tr key={index}>
+    <>
+      <Container>
+        <UserInformation />
+      </Container>
+      <Container>
+        <Table>
+          <thead>
+            <tr>
+              <th>Företagsnamn</th>
+              <th>Org.nr</th>
+              <th>Reference</th>
+              <th>E-post</th>
+              <th>Tel.nr</th>
+              <th> </th>
+            </tr>
+          </thead>
+          <TableBody>
+            {customerList &&
+              customerList.map((item, index) => {
+                return (
+                  <tr key={index}>
                     <td>{item.name}</td>
                     <td>{item.organisationNr}</td>
                     <td>{item.reference}</td>
                     <td>{item.email}</td>
                     <td>{item.phoneNumber}</td>
                     <td>
-                      <Link to={`/customer/${item.id}`}>
-                      &gt;&gt;</Link>
+                      <Link to={`/customer/${item.id}`}>&gt;&gt;</Link>
                     </td>
-                </tr>
-              );
-            })}
-        </TableBody>
-      </Table>
+                  </tr>
+                );
+              })}
+          </TableBody>
+        </Table>
       </Container>
-    </div>
+      <Container>
+        <CustomCustomerForm
+          handleOnSubmit={handleOnSubmit}
+          buttonText="Lägg till"
+        />
+      </Container>
+    </>
   );
 }
