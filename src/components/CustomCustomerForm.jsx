@@ -73,7 +73,7 @@ export default function CustomCustomerForm({ handleOnSubmit, buttonText }) {
         setValue={setPhoneNumber}
         labelText="Tel.nummer:"
       />
-      <Button form type="submit" gridStart={4}>
+      <Button formButton type="submit" gridStart={4}>
         {buttonText}
       </Button>
     </Form>

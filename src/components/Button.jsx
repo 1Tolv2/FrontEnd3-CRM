@@ -23,7 +23,7 @@ grid-column-start: ${props => props.gridStart};
 export default function Button(props) {
     return (
         <>
-        {props.form ? <FormButton type="submit" {...props}>
+        {props.formButton ? <FormButton type="submit" {...props}>
             {props.children}
         </FormButton> : <StyledButton onClick={props.onClick} delete={props.delete}>{props.children}</StyledButton>}
         </>
