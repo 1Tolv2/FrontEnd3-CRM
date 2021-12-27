@@ -1,19 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "../components/Form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import InputField from "../components/InputField";
-import UserActivation from "../components/UserActivation";
+// import UserActivation from "../components/UserActivation";
 import Button from "../components/Button";
 import Container from "../components/Container";
 import H1 from "../components/H1";
 import ErrorText from "../components/ErrorText";
 
 export default function LoginPage() {
+  const [response, setResponse] = useState(null)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  let location = useLocation();
+  let navigate = useNavigate();
+ 
+  useEffect(() => {
+    const urlSearches = location.search;
+    const params = new URLSearchParams(urlSearches);
+    const searchParamsList = {};
 
-UserActivation()
+    if (urlSearches !== "") {
+      for (const [key, value] of params) {
+        searchParamsList[`${key}`] = value;
+      }
+      console.log(searchParamsList.uid);
+      const url = "https://frebi.willandskill.eu/auth/users/activate/";
+      const payload = {
+        uid: searchParamsList.uid,
+        token: searchParamsList.token,
+      };
+      fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      })
+      .then(res => res.ok ? navigate("/login") : res.json())
+      .then((data) => data ? setResponse(data): console.log("no data"))
+    }
+}, [])
 
   function handleOnSubmit(e) {
     e.preventDefault();
@@ -53,8 +78,13 @@ UserActivation()
           setValue={setPassword}
           labelText="Lösenord:"
         />
-        <Button form gridStart={2}>Logga in</Button>
+        <Button formButton gridStart={2}>Logga in</Button>
       </Form>
+      {/* {console.log(response.detail)} */}
+      {response && (
+      <>
+      <ErrorText>{response.detail}</ErrorText>
+      </>)}
       <p>Saknar användare? <Link to="/create-user">Klicka här</Link> för att skapa en.</p>
     </Container>
   );
