@@ -36,7 +36,7 @@ export default function UserCreatePage() {
   return (
     <Container centered float width={350}>
       <h2>Skapa användare</h2>
-      <Form handleOnSubmit={handleOnSubmit}>
+      <Form handleOnSubmit={handleOnSubmit} gridColTemplate={"85px auto"}>
         <InputField
           type="text"
           value={firstName}
@@ -65,7 +65,7 @@ export default function UserCreatePage() {
           setValue={setPassword}
           labelText="Lösenord:"
         />
-        <Button form gridStart={2}>Skapa</Button>
+        <Button formButton gridStart={2}>Skapa</Button>
       </Form>
       <p>
         Redan en användare? <Link to="/login">Klicka här</Link> för att komma till

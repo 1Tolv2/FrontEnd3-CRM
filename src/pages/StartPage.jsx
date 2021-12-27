@@ -7,7 +7,9 @@ export default function StartPage() {
     return (
         <Container centered float width={400}>
             <H1>iCRM</H1>
-            <Link to="/login">Klicka här för att gå till inloggningssidan</Link>
+            <p>
+                <Link to="/login">Klicka här</Link> för att gå till inloggningssidan
+            </p>
         </Container>
     )
 }
