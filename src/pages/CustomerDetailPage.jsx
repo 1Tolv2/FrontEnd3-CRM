@@ -42,33 +42,13 @@ export default function CustomerDetailPage() {
 
   function handleOnSubmit(e) {
     e.preventDefault();
-    const stateList = [
-      "name",
-      "organisationNr",
-      "vatNr",
-      "reference",
-      "paymentTerm",
-      "website",
-      "email",
-      "phoneNumber",
-    ];
+    
     const payload = {};
-    console.log(stateList);
-
-    //checks if the value is added
     const target = e.target;
     for (let i = 0; i < target.length; i++) {
-      console.log(target[i].value);
-      if (target[i].value) {
-        let temp = stateList[i];
-        if (temp == "vatNr") {
-          const VATnr = target[i].value;
-          console.log(VATnr);
-          payload[temp] = ValidateVATnr(VATnr);
-        } else if (temp != "VATnr") {
-          payload[temp] = target[i].value;
-        }
-      }
+      if (target[i].id == "vatNr" && !ValidateVATnr(target[i].value)) { (target[i].value = "")}
+      target[i].value !== "" && (payload[target[i].id] = target[i].value)
+
     }
     console.log(payload);
 

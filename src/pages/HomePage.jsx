@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import UserInformation from "../components/UserInformation";
 import { Link } from "react-router-dom";
 import { CustomerContext } from "../App";
@@ -7,6 +7,7 @@ import { ValidateVATnr } from "../components/ValidateVATnr";
 import Container from "../components/Container";
 import Table from "../components/Table";
 import TableBody from "../components/TableBody";
+import ErrorText from "../components/ErrorText";
 
 const url = "https://frebi.willandskill.eu/api/v1/customers";
 const token = localStorage.getItem("webb21-js3");
@@ -16,6 +17,7 @@ const headers = {
 };
 
 export default function HomePage() {
+  const [response, setResponse] = useState(null);
   const { customerList, setCustomerList } = useContext(CustomerContext);
 
   useEffect(() => {
@@ -34,36 +36,17 @@ export default function HomePage() {
   }
   function handleOnSubmit(e) {
     e.preventDefault();
-    const stateList = [
-      "name",
-      "organisationNr",
-      "vatNr",
-      "reference",
-      "paymentTerm",
-      "website",
-      "email",
-      "phoneNumber",
-    ];
-    const payload = {};
-    console.log(stateList);
 
-    //checks what values are added
+    const payload = {};
     const target = e.target;
     for (let i = 0; i < target.length; i++) {
-      console.log(target[i].value);
-      if (target[i].value) {
-        let temp = stateList[i];
-
-        if (temp == "vatNr") {
-          // checks if the VATnr is in the correct format
-          const VATnr = target[i].value;
-          console.log(VATnr);
-          payload[temp] = ValidateVATnr(VATnr);
-        } else if (temp != "VATnr") {
-          payload[temp] = target[i].value;
-        }
+      if (target[i].id == "vatNr" && !ValidateVATnr(target[i].value)) {
+        target[i].value = "";
       }
+      target[i].value !== "" && (payload[target[i].id] = target[i].value);
     }
+    console.log(payload);
+    console.log(target);
 
     fetch(url, {
       method: "POST",
@@ -73,6 +56,7 @@ export default function HomePage() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        data.hasOwnProperty("detail") && setResponse(data.detail);
         renderCustomerList();
       });
   }
@@ -117,7 +101,14 @@ export default function HomePage() {
           handleOnSubmit={handleOnSubmit}
           buttonText="Lägg till"
         />
+        
+          {response && (
+            <>
+              <ErrorText>{response}</ErrorText>
+            </>
+          )}
       </Container>
     </>
   );
 }
+
