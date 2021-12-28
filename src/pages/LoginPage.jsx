@@ -36,7 +36,7 @@ export default function LoginPage() {
         body: JSON.stringify(payload),
       })
       .then(res => res.ok ? navigate("/login") : res.json())
-      .then((data) => data ? setResponse(data): console.log("no data"))
+      .then((data) => data ? setResponse(Object.entries(data)[0]): console.log("no data"))
     }
 }, [])
 
