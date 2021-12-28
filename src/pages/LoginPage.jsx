@@ -78,7 +78,7 @@ export default function LoginPage() {
           setValue={setPassword}
           labelText="Lösenord:"
         />
-        <Button formButton gridStart={2}>Logga in</Button>
+        <Button gridButton gridStart={2}>Logga in</Button>
       </Form>
       {/* {console.log(response.detail)} */}
       {response && (

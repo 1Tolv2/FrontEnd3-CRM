@@ -65,7 +65,7 @@ export default function UserCreatePage() {
           setValue={setPassword}
           labelText="Lösenord:"
         />
-        <Button formButton gridStart={2}>Skapa</Button>
+        <Button gridButton gridStart={2}>Skapa</Button>
       </Form>
       <p>
         Redan en användare? <Link to="/login">Klicka här</Link> för att komma till
