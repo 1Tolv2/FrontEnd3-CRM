@@ -4,13 +4,16 @@ import InputField from "../components/InputField";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import Container from "../components/Container";
+import ErrorText from "../components/ErrorText";
+import { ErrorResponse } from "../components/ErrorResponse";
 
 export default function UserCreatePage() {
+  const [response, setResponse] = useState(null);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   function handleOnSubmit(e) {
     e.preventDefault();
@@ -29,9 +32,8 @@ export default function UserCreatePage() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     })
-      .then((res) => res.json())
-      .then((data) => {console.log(data)
-      navigate("/login")});
+      .then((res) => (res.ok ? navigate("/login") : res.json()))
+      .then((data) => setResponse(Object.entries(data)));
   }
   return (
     <Container centered float width={350}>
@@ -44,6 +46,19 @@ export default function UserCreatePage() {
           setValue={setFirstName}
           labelText="Förnamn:"
         />
+        {response &&
+          response.map((item, index) => {
+            return (
+              item[0] == "firstName" && (
+                <>
+                <br/>
+                <ErrorText key={index}>
+                  {item[1]}
+                </ErrorText>
+                </>
+              )
+            );
+          })}
         <InputField
           type="text"
           value={lastName}
@@ -51,6 +66,18 @@ export default function UserCreatePage() {
           setValue={setLastName}
           labelText="Efternamn:"
         />
+        {response &&
+          response.map((item, index) => {
+            return (
+              item[0] == "lastName" && (
+                <> <br/>
+                <ErrorText key={index}>
+                  {item[1]}
+                </ErrorText>
+                </>
+              )
+            );
+          })}
         <InputField
           type="text"
           value={email}
@@ -58,6 +85,18 @@ export default function UserCreatePage() {
           setValue={setEmail}
           labelText="E-post:"
         />
+        {response &&
+          response.map((item, index) => {
+            return (
+              item[0] == "email" && (
+                <> <br/>
+                <ErrorText key={index}>
+                  {item[1]}
+                </ErrorText>
+                </>
+              )
+            );
+          })}
         <InputField
           type="password"
           value={password}
@@ -65,11 +104,25 @@ export default function UserCreatePage() {
           setValue={setPassword}
           labelText="Lösenord:"
         />
-        <Button gridButton gridStart={2}>Skapa</Button>
+        {response &&
+          response.map((item, index) => {
+            return (
+              item[0] == "password" && (
+                <> <br/>
+                <ErrorText key={index}>
+                  {item[1]}
+                </ErrorText>
+                </>
+              )
+            );
+          })}
+        <Button gridButton gridStart={2}>
+          Skapa
+        </Button>
       </Form>
       <p>
-        Redan en användare? <Link to="/login">Klicka här</Link> för att komma till
-        inloggningssidan.
+        Redan en användare? <Link to="/login">Klicka här</Link> för att komma
+        till inloggningssidan.
       </p>
     </Container>
   );
