@@ -16,16 +16,16 @@ cursor: pointer;
 ${(props) => props.delete && css`background-color: #ff3300;`}
 `
 
-const FormButton = styled(StyledButton)`
+const GridButton = styled(StyledButton)`
 grid-column-start: ${props => props.gridStart};
 `
 
 export default function Button(props) {
     return (
         <>
-        {props.formButton ? <FormButton type="submit" {...props}>
+        {props.gridButton ? <GridButton type="submit" {...props}>
             {props.children}
-        </FormButton> : <StyledButton onClick={props.onClick} delete={props.delete}>{props.children}</StyledButton>}
+        </GridButton> : <StyledButton onClick={props.onClick} delete={props.delete}>{props.children}</StyledButton>}
         </>
     )
 }
