@@ -15,7 +15,6 @@ export default function CustomCustomerForm({ handleOnSubmit, buttonText }) {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  const [vatNrResponse, setVatNrResponse] = useState(null);
   return (
     <Form
       handleOnSubmit={handleOnSubmit}
@@ -41,8 +40,7 @@ export default function CustomCustomerForm({ handleOnSubmit, buttonText }) {
         id="vatNr"
         value={vatNr}
         onChange={(e) => {
-          setVatNr(e.target.value);
-          setVatNrResponse(!ValidateVATnr(vatNr));
+          setVatNr(e.target.value)
         }}
       />
       <InputField
@@ -52,16 +50,15 @@ export default function CustomCustomerForm({ handleOnSubmit, buttonText }) {
         setValue={setReference}
         labelText="Reference:"
       />
-      {vatNrResponse && (
+      { //placed here to allow for reference to keep it's place in the grid
+      (!ValidateVATnr(vatNr) && vatNr !== "") && (
         <>
           <ErrorText gridStart={2} gridEnd={5}>
-            Vänligen ange i formatet SExxxxxxxxxx (10 siffror).
+            Vänligen ange SE följt av 10 siffror.
           </ErrorText>
         </>
-      )}{" "}
-      {
-        //Placed here to allow reference to keep it's spot
-      }
+      )}
+      
       <InputField
         type="text"
         id="paymentTerm"
