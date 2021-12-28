@@ -1,12 +1,15 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const Grid = styled.div`
   display: grid;
   grid-template-columns: ${(props) => props.gridColTemplate};
-  grid-row-gap: 5px;
-  grid-column-gap: 5px;
   padding: 10px;
+  ${(props) =>
+    props.gap &&
+    css`
+      gap: 10px;
+    `}
 `;
 
 const Item = styled.div`
@@ -17,7 +20,6 @@ const Item = styled.div`
   width: ${(props) => props.width}px;
   padding: 5px 10px 5px 10px;
   background-color: white;
-  margin: 10px;
 `;
 
 export default function GridContainer(props) {

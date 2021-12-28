@@ -24,3 +24,7 @@ a {
 .delete {
   background-color: #ff3300;
 }
+
+h3 {
+  padding: 0 20px;
+}

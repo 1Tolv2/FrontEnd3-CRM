@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { CustomerContext } from "../App";
 import CustomCustomerForm from "../components/CustomCustomerForm";
 import { ValidateVATnr } from "../components/ValidateVATnr";
-import Container from "../components/Container";
 import Table from "../components/Table";
 import TableBody from "../components/TableBody";
 import ErrorText from "../components/ErrorText";
@@ -63,7 +62,7 @@ export default function HomePage() {
   }
   return (
     <>
-    <Grid gridColTemplate={"auto auto auto auto"}>
+    <Grid gap gridColTemplate={"auto auto auto auto"}>
       <Grid item rowStart={1} rowEnd={2} colStart={4} colEnd={5}>
         <UserInformation />
       </Grid>

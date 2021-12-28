@@ -5,7 +5,7 @@ const StyledForm = styled.form`
   display: grid;
   grid-template-columns: ${props => props.gridColTemplate};
   grid-row-gap: 5px;
-  grid-column-gap: 5px;
+  grid-column-gap: 10px;
   background: white;
   padding: 20px;
 `;

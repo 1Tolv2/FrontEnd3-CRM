@@ -1,7 +1,6 @@
 import React from 'react'
 import styled, {css} from 'styled-components'
 
-
 const StyledContainer = styled.div`
 width: ${props => props.width}px;
 padding: 5px 10px 5px 10px;
