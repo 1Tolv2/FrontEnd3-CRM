@@ -2,10 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { CustomerContext } from "../App";
 import Button from "../components/Button";
-import Container from "../components/Container";
+import Grid from "../components/Grid"
 import CustomCustomerForm from "../components/CustomCustomerForm";
 import { ValidateVATnr } from "../components/ValidateVATnr";
-import UnorderedList from "../components/UnorderedList";
 import H1 from "../components/H1";
 
 export default function CustomerDetailPage() {
@@ -66,36 +65,44 @@ export default function CustomerDetailPage() {
   return (
     <>
       {customer && (
-        <>
-          <Container>
+        <Grid gap gridColTemplate={"auto auto auto auto"}>
+          <Grid item colStart={1} colEnd={5}>
             <Button>
               <Link to="/home">&larr; Tillbaka</Link>
             </Button>
             <H1>{customer.name}</H1>
-            <Container centered width={100}>
+            <Grid centered width={100}>
               <Button delete onClick={handleOnDelete}>
                 Ta bort
               </Button>
-            </Container>
-          </Container>
-          <Container>
-            <UnorderedList>
-              <li>{customer.organisationNr}</li>
-              <li>{customer.vatNr}</li>
-              <li>{customer.reference}</li>
-              <li>{customer.paymentTerm} days</li>
-              <li>{customer.website}</li>
-              <li>{customer.email}</li>
-              <li>{customer.phoneNumber}</li>
-            </UnorderedList>
-          </Container>
-          <Container>
+            </Grid>
+          </Grid>
+          <Grid item colRowStart={2} colStart={1} colEnd={3}>
+            <Grid gridColTemplate={"100px auto"}>
+            <Grid item colStart={1} colEnd={2}>Org.nr:</Grid>
+            <Grid item colStart={2} colEnd={3}>{customer.organisationNr}</Grid>
+            <Grid item colStart={1} colEnd={2}>Moms.nr:</Grid>
+            <Grid item colStart={2} colEnd={3}>{customer.vatNr}</Grid>
+            <Grid item colStart={1} colEnd={2}>Reference:</Grid>
+            <Grid item colStart={2} colEnd={3}>{customer.reference}</Grid>
+            <Grid item colStart={1} colEnd={2}>Bet.villkor:</Grid>
+            <Grid item colStart={2} colEnd={3}>{customer.paymentTerm}</Grid>
+            <Grid item colStart={1} colEnd={2}>Hemsida:</Grid>
+            <Grid item colStart={2} colEnd={3}>{customer.website}</Grid>
+            <Grid item colStart={1} colEnd={2}>E-post:</Grid>
+            <Grid item colStart={2} colEnd={3}>{customer.email}</Grid>
+            <Grid item colStart={1} colEnd={2}>Tel.nr:</Grid>
+            <Grid item colStart={2} colEnd={3}>{customer.phoneNumber}</Grid>
+            </Grid>
+          </Grid>
+          <Grid item colRowStart={2} colStart={3} colEnd={5}>
+            <h3>Redigera kunduppgifter</h3>
             <CustomCustomerForm
               handleOnSubmit={handleOnSubmit}
               buttonText="Spara"
             />
-          </Container>
-        </>
+          </Grid>
+        </Grid>
       )}
     </>
   );
