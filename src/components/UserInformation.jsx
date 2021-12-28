@@ -1,6 +1,6 @@
 import React, { useEffect, useContext} from 'react'
 import { UserContext } from '../App'
-
+import Grid from "./Grid"
 
 export default function UserInformation() {
     const {user, setUser} = useContext(UserContext)
@@ -15,10 +15,10 @@ fetch(url, {
 .then(data => setUser(data))
     }, [])
     return (
-        <div>
+        <Grid item>
             {user && (<>
             <p>Du är inloggad som <strong>{user.firstName} {user.lastName} - {user.email}</strong></p>
             </>)}
-        </div>
+        </Grid>
     )
 }

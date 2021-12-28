@@ -8,6 +8,7 @@ import Container from "../components/Container";
 import Table from "../components/Table";
 import TableBody from "../components/TableBody";
 import ErrorText from "../components/ErrorText";
+import Grid from "../components/Grid";
 
 const url = "https://frebi.willandskill.eu/api/v1/customers";
 const token = localStorage.getItem("webb21-js3");
@@ -62,10 +63,25 @@ export default function HomePage() {
   }
   return (
     <>
-      <Container>
+    <Grid gridColTemplate={"auto auto auto auto"}>
+      <Grid item rowStart={1} rowEnd={2} colStart={4} colEnd={5}>
         <UserInformation />
-      </Container>
-      <Container>
+      </Grid>
+      <Grid item rowStart={1} colStart={1} colEnd={4}>
+        <h3>Lägg till kund</h3>
+        <CustomCustomerForm
+          handleOnSubmit={handleOnSubmit}
+          buttonText="Lägg till"
+        />
+        
+          {response && (
+            <>
+              <ErrorText>{response}</ErrorText>
+            </>
+          )}
+      </Grid >
+      <Grid item rowStart={2} colStart={1} colEnd={5}>
+      <h3>Kunder</h3>
         <Table>
           <thead>
             <tr>
@@ -95,19 +111,8 @@ export default function HomePage() {
               })}
           </TableBody>
         </Table>
-      </Container>
-      <Container>
-        <CustomCustomerForm
-          handleOnSubmit={handleOnSubmit}
-          buttonText="Lägg till"
-        />
-        
-          {response && (
-            <>
-              <ErrorText>{response}</ErrorText>
-            </>
-          )}
-      </Container>
+      </Grid>
+      </Grid>
     </>
   );
 }

@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import UserCreatePage from "./pages/UserCreatePage";
 import StartPage from "./pages/StartPage";
+import H1 from "./components/H1";
 
 const CustomerContext = createContext([]);
 const UserContext = createContext([]);
@@ -13,6 +14,7 @@ function App() {
   const [user, setUser] = useState(null);
   return (
     <>
+      <H1>iCRM</H1>
       <UserContext.Provider value={{ user, setUser }}>
         <CustomerContext.Provider value={{ customerList, setCustomerList }}>
           <Routes>

@@ -18,7 +18,7 @@ export default function CustomCustomerForm({ handleOnSubmit, buttonText }) {
   return (
     <Form
       handleOnSubmit={handleOnSubmit}
-      gridColTemplate={"130px 35% 130px 35%"}
+      gridColTemplate={"130px auto 130px auto"}
     >
       <InputField
         type="text"
