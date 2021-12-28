@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import Form from "../components/Form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import InputField from "../components/InputField";
-// import UserActivation from "../components/UserActivation";
 import Button from "../components/Button";
 import Container from "../components/Container";
 import H1 from "../components/H1";
 import ErrorText from "../components/ErrorText";
+import {FirstLetterUpperCase} from "../components/FirstLetterUpperCase"
 
 export default function LoginPage() {
   const [response, setResponse] = useState(null)
@@ -52,7 +52,8 @@ export default function LoginPage() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
+        console.log(Object.entries(data)[0])
+        setResponse(Object.entries(data)[0])
         const token = data.token;
         localStorage.setItem("webb21-js3", token);
         token && navigate("/home"); //Ser till att du inte navigeras till /home innan du fått en token
@@ -80,10 +81,9 @@ export default function LoginPage() {
         />
         <Button gridButton gridStart={2}>Logga in</Button>
       </Form>
-      {/* {console.log(response.detail)} */}
       {response && (
       <>
-      <ErrorText>{response.detail}</ErrorText>
+      <ErrorText>{response[0] != "nonFieldErrors" && `${FirstLetterUpperCase(response[0])}:`} {response[1]}</ErrorText>
       </>)}
       <p>Saknar användare? <Link to="/create-user">Klicka här</Link> för att skapa en.</p>
     </Container>
