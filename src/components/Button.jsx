@@ -22,9 +22,14 @@ grid-column-end: ${props => props.colEnd};
 width: ${props => props.width}%;
 box-sizing: border-box;
 margin-top: 20px;
+${(props) => props.delete && css`background-color: #ff3300;`}
 
+@media (max-width: 1000px) {
+    align-self: flex-end;
+    }
 @media (max-width: 550px) {
 width: 100%;
+
 }
 `
 
