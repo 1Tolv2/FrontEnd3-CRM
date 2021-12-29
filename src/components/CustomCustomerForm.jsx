@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import InputField from "./InputField";
 import Form from "./Form";
 import Button from "./Button";
-import { ValidateVATnr } from "./ValidateVATnr";
-import ErrorText from "./ErrorText";
 
-export default function CustomCustomerForm({ handleOnSubmit, buttonText }) {
+export default function CustomCustomerForm({ handleOnSubmit, buttonText, inputRes }) {
   const [name, setName] = useState("");
   const [organisationNr, setOrganisationNr] = useState("");
   const [vatNr, setVatNr] = useState("");
@@ -26,22 +24,23 @@ export default function CustomCustomerForm({ handleOnSubmit, buttonText }) {
         value={name}
         setValue={setName}
         labelText="Företagsnamn:"
+        required
       />
       <InputField
-        type="text"
-        id="organisationsNr"
+        type="number"
+        id="organisationNr"
         value={organisationNr}
         setValue={setOrganisationNr}
         labelText="Org.nummer:"
       />
-      <label htmlFor="vatNr">Momsnummer:</label>
-      <input
+      <InputField
         type="text"
         id="vatNr"
         value={vatNr}
-        onChange={(e) => {
-          setVatNr(e.target.value)
-        }}
+        setValue={setVatNr}
+        labelText="Momsnummer:"
+        title="Ange SE följt av 10 siffror."
+        pattern="^SE[0-9]{10}$"
       />
       <InputField
         type="text"
@@ -50,17 +49,8 @@ export default function CustomCustomerForm({ handleOnSubmit, buttonText }) {
         setValue={setReference}
         labelText="Reference:"
       />
-      { //placed here to allow for reference to keep it's place in the grid
-      (!ValidateVATnr(vatNr) && vatNr !== "") && (
-        <>
-          <ErrorText gridStart={2} gridEnd={5}>
-            Vänligen ange SE följt av 10 siffror.
-          </ErrorText>
-        </>
-      )}
-      
       <InputField
-        type="text"
+        type="number"
         id="paymentTerm"
         value={paymentTerm}
         setValue={setPaymentTerm}
@@ -79,15 +69,17 @@ export default function CustomCustomerForm({ handleOnSubmit, buttonText }) {
         value={email}
         setValue={setEmail}
         labelText="E-post:"
+        title="Ange en giltig e-postadress"
+        pattern=".+@.+\..+"
       />
       <InputField
-        type="text"
+        type="number"
         id="phoneNumber"
         value={phoneNumber}
         setValue={setPhoneNumber}
         labelText="Tel.nummer:"
       />
-      <Button gridButton type="submit" gridStart={4}>
+      <Button gridButton type="submit" colStart={4}>
         {buttonText}
       </Button>
     </Form>
