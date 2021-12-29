@@ -54,8 +54,7 @@ export default function LoginPage() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.nonFieldErrors)
-        setResponse(data.nonFieldErrors)
+        data.hasOwnProperty("nonFieldErrors") && setResponse(data.nonFieldErrors)
         const token = data.token;
         localStorage.setItem("webb21-js3", token);
         token && navigate("/home"); //Ser till att du inte navigeras till /home innan du fått en token

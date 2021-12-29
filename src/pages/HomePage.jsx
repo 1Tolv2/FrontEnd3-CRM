@@ -57,9 +57,8 @@ export default function HomePage() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        data.hasOwnProperty("detail") && setResponse(data.detail);
-        renderCustomerList();
+        console.log(data)
+        data.hasOwnProperty("detail") ? setResponse(data.detail) : renderCustomerList();      
       });
   }
   return (
@@ -70,11 +69,10 @@ export default function HomePage() {
       </Grid>
       <Grid item rowStart={1} colStart={1} colEnd={4}>
         <h3>Lägg till kund</h3>
-        <CustomCustomerForm
+            <CustomCustomerForm
           handleOnSubmit={handleOnSubmit}
           buttonText="Lägg till"
-        />
-        
+          />
           {response && (
             <>
               <ErrorText>{response}</ErrorText>
@@ -88,6 +86,7 @@ export default function HomePage() {
             <tr>
               <th>Företagsnamn</th>
               <th>Org.nr</th>
+              <th>Moms.nr</th>
               <th>Reference</th>
               <th>E-post</th>
               <th>Tel.nr</th>
@@ -101,6 +100,7 @@ export default function HomePage() {
                   <tr key={index}>
                     <td>{item.name}</td>
                     <td>{item.organisationNr}</td>
+                    <td>{item.vatNr}</td>
                     <td>{item.reference}</td>
                     <td>{item.email}</td>
                     <td>{item.phoneNumber}</td>
