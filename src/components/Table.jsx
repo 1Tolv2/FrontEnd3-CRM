@@ -12,6 +12,12 @@ th{
     background-color: #33cccc;
     color: white; 
     padding: 3px 5px ;
+    @media (max-width: 900px) {
+        :nth-child(even){
+            display: none;
+        }
+}
+overflow-x:auto;
 }
 `
 

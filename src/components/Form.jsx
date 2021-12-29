@@ -8,6 +8,11 @@ const StyledForm = styled.form`
   grid-column-gap: 10px;
   background: white;
   padding: 20px;
+
+  @media (max-width: 700px) {
+    display: flex;
+    flex-flow: column wrap;
+  }
 `;
 
 export default function Form({ handleOnSubmit, children, gridColTemplate}) {

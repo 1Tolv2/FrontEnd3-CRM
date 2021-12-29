@@ -10,6 +10,13 @@ const Grid = styled.div`
     css`
       gap: 10px;
     `}
+    @media (max-width: 1000px) {
+      display: flex;
+      flex-flow: column wrap;
+      }
+      @media (max-width: 700px) {
+        padding: 0;
+    }
 `;
 
 const Item = styled.div`
