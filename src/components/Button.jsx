@@ -17,7 +17,11 @@ ${(props) => props.delete && css`background-color: #ff3300;`}
 `
 
 const GridButton = styled(StyledButton)`
-grid-column-start: ${props => props.gridStart};
+grid-column-start: ${props => props.colStart};
+grid-column-end: ${props => props.colEnd};
+width: ${props => props.width}%;
+box-sizing: border-box;
+margin-top: 20px;
 `
 
 export default function Button(props) {
