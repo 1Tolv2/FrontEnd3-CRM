@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import UserInformation from "../components/UserInformation";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CustomerContext } from "../App";
 import CustomCustomerForm from "../components/CustomCustomerForm";
 import { ValidateVATnr } from "../components/ValidateVATnr";
@@ -10,29 +10,31 @@ import ErrorText from "../components/ErrorText";
 import Grid from "../components/Grid";
 
 const url = "https://frebi.willandskill.eu/api/v1/customers";
-const token = localStorage.getItem("webb21-js3");
+let token;
 const headers = {
   "Content-Type": "application/json",
-  Authorization: `Bearer ${token}`,
+  // Authorization: `Bearer ${token}`,
 };
 
 export default function HomePage() {
   const [response, setResponse] = useState(null);
   const { customerList, setCustomerList } = useContext(CustomerContext);
+  const navigate = useNavigate()
 
   useEffect(() => {
-    renderCustomerList();
+    token = localStorage.getItem("webb21-js3")
+    headers["Authorization"] = `Bearer ${token}`
+    token ? renderCustomerList() : navigate("/login")
   }, []);
 
   function renderCustomerList() {
+    
     fetch(url, {
       headers: headers,
     })
       .then((res) => res.json())
-      .then((data) => {
-        setCustomerList(data.results);
-        console.log(data.results);
-      });
+      .then((data) => setCustomerList(data.results)
+      );
   }
   function handleOnSubmit(e) {
     e.preventDefault();
