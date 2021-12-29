@@ -22,6 +22,10 @@ grid-column-end: ${props => props.colEnd};
 width: ${props => props.width}%;
 box-sizing: border-box;
 margin-top: 20px;
+
+@media (max-width: 550px) {
+width: 100%;
+}
 `
 
 export default function Button(props) {

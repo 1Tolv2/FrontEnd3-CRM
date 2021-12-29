@@ -67,15 +67,14 @@ export default function CustomerDetailPage() {
       {customer && (
         <Grid gap gridColTemplate={"auto auto auto auto"}>
           <Grid item colStart={1} colEnd={5}>
-            <Button>
+            <Button gridButton>
               <Link to="/home">&larr; Tillbaka</Link>
             </Button>
             <H1>{customer.name}</H1>
-            <Grid centered width={100}>
+
               <Button delete onClick={handleOnDelete}>
                 Ta bort
               </Button>
-            </Grid>
           </Grid>
           <Grid item colRowStart={2} colStart={1} colEnd={3}>
             <Grid gridColTemplate={"100px auto"}>
