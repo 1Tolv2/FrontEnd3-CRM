@@ -27,6 +27,7 @@ export default function CustomerDetailPage() {
     setCustomer(customerList.find((item) => item.id == id));
   }
   useEffect(() => {
+    !token && navigate("/login")
     customerList ? checkCustomerList() : navigate("/home");
   }, []);
 
