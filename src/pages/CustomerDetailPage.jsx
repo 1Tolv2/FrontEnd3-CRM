@@ -71,7 +71,6 @@ export default function CustomerDetailPage() {
               <Link to="/home">&larr; Tillbaka</Link>
             </Button>
             <H1>{customer.name}</H1>
-
               <Button delete onClick={handleOnDelete}>
                 Ta bort
               </Button>

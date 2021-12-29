@@ -13,10 +13,8 @@ const Grid = styled.div`
     @media (max-width: 1000px) {
       display: flex;
       flex-flow: column wrap;
+      padding: 0;
       }
-      @media (max-width: 700px) {
-        padding: 0;
-    }
 `;
 
 const Item = styled.div`

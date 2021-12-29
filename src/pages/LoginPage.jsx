@@ -80,7 +80,7 @@ export default function LoginPage() {
           labelText="Lösenord:"
           required
         />
-        <Button gridButton colStart={2}>
+        <Button gridButton colStart={1} colEnd={3} width={100}>
           Logga in
         </Button>
       </Form>
