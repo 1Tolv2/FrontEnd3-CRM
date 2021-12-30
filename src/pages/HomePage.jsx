@@ -13,7 +13,6 @@ const url = "https://frebi.willandskill.eu/api/v1/customers";
 let token;
 const headers = {
   "Content-Type": "application/json",
-  // Authorization: `Bearer ${token}`,
 };
 
 export default function HomePage() {
