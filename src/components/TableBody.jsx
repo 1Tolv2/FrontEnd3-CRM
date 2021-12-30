@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import styled from 'styled-components'
+import { DarkThemeContext } from "../App";
 
 const StyledTbody = styled.tbody`
 tr:nth-child(even){
-    background-color: #EBF5EE;
+    background-color: ${props => props.isDarkMode ? "#415358" : "#EBF5EE"};
 }
 @media (max-width: 900px) {
     td:nth-child(3){
@@ -19,8 +20,10 @@ tr:nth-child(even){
     }
 `
 export default function ListItem(props) {
+    const {isDarkMode} = useContext(DarkThemeContext)
+
     return (
-        <StyledTbody>
+        <StyledTbody isDarkMode={isDarkMode}>
             {props.children}
         </StyledTbody>
     )

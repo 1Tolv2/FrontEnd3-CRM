@@ -10,18 +10,20 @@ import ModeSwitch from "./components/ModeSwitch";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-*{transition: 0.4s;}
 body {
 margin: 0;
 font-family: "calibri";
-background-color: ${(props) => (props.isDarkMode ? "#212121" : "#ebebeb")}};
+background-color: ${(props) => (props.isDarkMode ? "#212121" : "#ebebeb")};
+color: ${(props) => (props.isDarkMode ? "#e0e0e0" : "black")};
+transition: background-color 0.4s;
+};
 a {
   text-decoration: none;
   color: inherit;
   font-weight: bold;
 }
 .delete {
-  background-color: #ff3300;
+  background-color: ${(props) => (props.isDarkMode ? "white" : "#ff3300")};
 }
 h3 {
   padding: 0 20px;

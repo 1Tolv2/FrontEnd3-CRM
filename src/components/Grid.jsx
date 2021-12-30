@@ -1,5 +1,6 @@
-import React from "react";
-import styled, { css } from "styled-components";
+import React, {useContext} from 'react'
+import styled, {css} from 'styled-components'
+import { DarkThemeContext } from "../App";
 
 const Grid = styled.div`
   display: grid;
@@ -24,16 +25,18 @@ const Item = styled.div`
   grid-row-end: ${(props) => props.rowEnd};
   width: ${(props) => props.width}px;
   padding: 5px 10px 5px 10px;
-  background-color: white;
+  background-color: ${props => props.isDarkMode ? "#333333" : "white"};
 `;
 
 export default function GridContainer(props) {
+  const {isDarkMode} = useContext(DarkThemeContext)
+
   return (
     <>
       {props.item ? (
-        <Item {...props}>{props.children}</Item>
+        <Item {...props} isDarkMode={isDarkMode}>{props.children}</Item>
       ) : (
-        <Grid {...props}>{props.children}</Grid>
+        <Grid {...props} isDarkMode={isDarkMode}>{props.children}</Grid>
       )}
     </>
   );
