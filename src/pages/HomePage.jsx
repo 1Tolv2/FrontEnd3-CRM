@@ -3,7 +3,6 @@ import UserInformation from "../components/UserInformation";
 import { Link, useNavigate } from "react-router-dom";
 import { CustomerContext } from "../App";
 import CustomCustomerForm from "../components/CustomCustomerForm";
-import { ValidateVATnr } from "../components/ValidateVATnr";
 import Table from "../components/Table";
 import TableBody from "../components/TableBody";
 import ErrorText from "../components/ErrorText";
@@ -40,14 +39,12 @@ export default function HomePage() {
 
     const payload = {};
     const target = e.target;
+    console.log(target)
     for (let i = 0; i < target.length; i++) {
-      if (target[i].id == "vatNr" && !ValidateVATnr(target[i].value)) {
-        target[i].value = "";
-      }
       target[i].value !== "" && (payload[target[i].id] = target[i].value);
     }
     console.log(payload);
-    console.log(target);
+    
 
     fetch(url, {
       method: "POST",

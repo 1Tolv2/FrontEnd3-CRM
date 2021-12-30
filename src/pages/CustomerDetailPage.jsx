@@ -4,7 +4,6 @@ import { CustomerContext } from "../App";
 import Button from "../components/Button";
 import Grid from "../components/Grid"
 import CustomCustomerForm from "../components/CustomCustomerForm";
-import { ValidateVATnr } from "../components/ValidateVATnr";
 import H1 from "../components/H1";
 
 export default function CustomerDetailPage() {
@@ -46,7 +45,6 @@ export default function CustomerDetailPage() {
     const payload = {};
     const target = e.target;
     for (let i = 0; i < target.length; i++) {
-      if (target[i].id == "vatNr" && !ValidateVATnr(target[i].value)) { (target[i].value = "")}
       target[i].value !== "" && (payload[target[i].id] = target[i].value)
     }
     console.log(payload);
