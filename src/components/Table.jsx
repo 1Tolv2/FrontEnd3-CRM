@@ -13,7 +13,15 @@ th{
     color: white; 
     padding: 3px 5px ;
     @media (max-width: 900px) {
-        :nth-child(even){
+        :nth-child(3){
+            display: none;
+        }
+        :nth-child(5){
+            display: none;
+        }
+}
+@media (max-width: 650px) {
+    :nth-child(6){
             display: none;
         }
 }

@@ -6,8 +6,16 @@ tr:nth-child(even){
     background-color: #EBF5EE;
 }
 @media (max-width: 900px) {
-    td:nth-child(even){
+    td:nth-child(3){
         display: none;
+    }
+    td:nth-child(5){
+        display: none;
+    }
+    @media (max-width: 650px) {
+        td:nth-child(6){
+                display: none;
+            }
     }
 `
 export default function ListItem(props) {
