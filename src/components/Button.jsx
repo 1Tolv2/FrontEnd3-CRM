@@ -5,7 +5,7 @@ import { DarkThemeContext } from "../App";
 const StyledButton = styled.button`
 justify-self: end;
 color: ${props => props.isDarkMode ? "black" : "white"};
-background-color: ${props => props.isDarkMode ? "#80ffff" : "#33cccc"};
+background-color: ${props => props.isDarkMode ? "#79E2F2" : "#33cccc"};
 font-weight: 600;
 padding: 5px;
 margin: 5px 0;

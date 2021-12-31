@@ -7,8 +7,9 @@ const StyledForm = styled.form`
   grid-template-columns: ${props => props.gridColTemplate};
   grid-row-gap: 5px;
   grid-column-gap: 10px;
-  background: ${props => props.isDarkMode ? "#333333" : "white"};
+  background-color: ${props => props.isDarkMode ? "#333333" : "white"};
   padding: 20px;
+  transition: 0.4s;
 
   @media (max-width: 700px) {
     display: flex;

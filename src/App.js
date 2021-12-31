@@ -33,14 +33,13 @@ const DarkThemeContext = createContext([]);
 const CustomerContext = createContext([]);
 const UserContext = createContext([]);
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setDarkMode] = useState(false);
   const [customerList, setCustomerList] = useState(null);
   const [user, setUser] = useState(null);
   return (
     <>
-      <DarkThemeContext.Provider value={{ isDarkMode, setIsDarkMode }}>
+      <DarkThemeContext.Provider value={{ isDarkMode, setDarkMode }}>
         <GlobalStyle isDarkMode={isDarkMode} />
-        <H1>iCRM</H1>
         <ModeSwitch />
         <UserContext.Provider value={{ user, setUser }}>
           <CustomerContext.Provider value={{ customerList, setCustomerList }}>

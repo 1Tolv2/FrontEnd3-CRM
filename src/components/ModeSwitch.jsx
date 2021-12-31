@@ -9,7 +9,7 @@ const Slider = styled.span`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: ${props => props.isDarkMode ? "#424242" : "#ccc"};
+  background-color: ${(props) => (props.isDarkMode ? "#424242" : "#ccc")};
   transition: 0.4s;
   &:before {
     position: absolute;
@@ -18,18 +18,17 @@ const Slider = styled.span`
     width: 17px;
     left: 5px;
     bottom: 4px;
-    background-color: ${props => props.isDarkMode ? "#212121" : "white"};
+    background-color: ${(props) => (props.isDarkMode ? "#212121" : "white")};
     transition: 0.4s;
   }
 `;
 
 const Switch = styled.label`
   position: relative;
-  top: -40px;
   display: inline-block;
   width: 60px;
   height: 25px;
-  margin-left: 10px;
+  margin: 10px 0 10px 10px;
   input {
     opacity: 0;
     width: 0;
@@ -42,18 +41,19 @@ const Switch = styled.label`
 `;
 
 export default function ModeSwitch() {
-  const {isDarkMode, setIsDarkMode} = useContext(DarkThemeContext)
+  const { isDarkMode, setDarkMode } = useContext(DarkThemeContext);
 
-  function changeMode(){
-      isDarkMode ? setIsDarkMode(false) : setIsDarkMode(true)
+  function toggleDarkMode() {
+    setDarkMode(!isDarkMode);
   }
 
   console.log(isDarkMode);
-  return (<>
-    <Switch className="switch">
-      <input type="checkbox" onChange={changeMode}/>
-      <Slider isDarkMode={isDarkMode} className="slider" ></Slider>
-    </Switch>
+  return (
+    <>
+      <Switch className="switch">
+        <input type="checkbox" onChange={toggleDarkMode} />
+        <Slider isDarkMode={isDarkMode} className="slider"></Slider>
+      </Switch>
     </>
   );
 }
