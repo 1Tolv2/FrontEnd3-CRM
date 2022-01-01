@@ -24,7 +24,10 @@ export default function CustomerDetailPage() {
 
   function checkCustomerList() {
     setCustomer(customerList.find((item) => item.id == id));
+    console.log(customer)
   }
+
+
   useEffect(() => {
     !token && navigate("/login")
     customerList ? checkCustomerList() : navigate("/home");

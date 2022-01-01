@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import ErrorText from "./ErrorText"
 
 export default function UserActivation() {
   const [response, setResponse] = useState(null);
