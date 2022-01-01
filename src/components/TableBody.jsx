@@ -6,6 +6,12 @@ const StyledTbody = styled.tbody`
 td {
     padding: 10px 5px;
 }
+tr {
+    cursor: pointer;
+}
+tr:hover {
+    outline: solid ${(props) => (props.isDarkMode ? "#79E2F2" : "grey")} 2px;
+}
 tr:nth-child(even){
     background-color: ${props => props.isDarkMode ? "#415358" : "#EBF5EE"};
 }

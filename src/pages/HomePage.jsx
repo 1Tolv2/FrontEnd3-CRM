@@ -64,6 +64,10 @@ export default function HomePage() {
         data.hasOwnProperty("detail") ? setResponse(data.detail) : renderCustomerList();      
       });
   }
+
+  function linkToCustomer(id) {
+    navigate(`/customer/${id}`)
+  }
   return (
     <>
     <Grid gap gridColTemplate={"auto auto auto auto"}>
@@ -90,23 +94,20 @@ export default function HomePage() {
               <th>Reference</th>
               <th>E-post</th>
               <th>Tel.nr</th>
-              <th> </th>
             </tr>
           </thead>
           <TableBody>
             {customerList &&
               customerList.map((item, index) => {
+
                 return (
-                  <tr key={index}>
+                  <tr key={index} onClick={() => {navigate(`/customer/${item.id}`)}}>
                     <td>{item.name}</td>
                     <td>{item.organisationNr}</td>
                     <td>{item.vatNr}</td>
                     <td>{item.reference}</td>
                     <td>{item.email}</td>
                     <td>{item.phoneNumber}</td>
-                    <td>
-                      <Link to={`/customer/${item.id}`}>&gt;&gt;</Link>
-                    </td>
                   </tr>
                 );
               })}

@@ -18,6 +18,7 @@ const StyledTable = styled.table`
       :nth-child(3) {
         display: none;
       }
+    
       :nth-child(5) {
         display: none;
       }
