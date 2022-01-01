@@ -7,6 +7,9 @@ import Table from "../components/Table";
 import TableBody from "../components/TableBody";
 import ErrorText from "../components/ErrorText";
 import Grid from "../components/Grid";
+import AddButton from "../components/AddButton";
+import ProgressBar from "../components/ProgressBar";
+import { DarkThemeContext } from "../App";
 
 const url = "https://frebi.willandskill.eu/api/v1/customers";
 let token;
@@ -16,7 +19,9 @@ const headers = {
 
 export default function HomePage() {
   const [response, setResponse] = useState(null);
+  const [addCustomer, setAddCustomer] = useState(false)
   const { customerList, setCustomerList } = useContext(CustomerContext);
+  const { isDarkMode } = useContext(DarkThemeContext)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -25,6 +30,7 @@ export default function HomePage() {
     token ? renderCustomerList() : navigate("/login")
   }, []);
 
+
   function renderCustomerList() {
     
     fetch(url, {
@@ -32,6 +38,7 @@ export default function HomePage() {
     })
       .then((res) => res.json())
       .then((data) => setCustomerList(data.results)
+      
       );
   }
   function handleOnSubmit(e) {
@@ -60,22 +67,19 @@ export default function HomePage() {
   return (
     <>
     <Grid gap gridColTemplate={"auto auto auto auto"}>
-      <Grid item rowStart={1} rowEnd={2} colStart={4} colEnd={5}>
+      <Grid item rowStart={1} colStart={1} colEnd={5}>
         <UserInformation />
       </Grid>
-      <Grid item rowStart={1} colStart={1} colEnd={4}>
-        <h3>Lägg till kund</h3>
-            <CustomCustomerForm
-          handleOnSubmit={handleOnSubmit}
-          buttonText="Lägg till"
-          />
-          {response && (
-            <>
-              <ErrorText>{response}</ErrorText>
-            </>
-          )}
-      </Grid >
-      <Grid item rowStart={2} colStart={1} colEnd={5}>
+
+      <Grid item colStart={3} colEnd={5}><h3>Mål</h3> 
+      <h4>Säljsamtal</h4>
+      <ProgressBar progress={47} progressColor={ isDarkMode ? "#6e78dd" : "#303ecf"}/>
+      <h4>Bokade möten</h4>
+      <ProgressBar progress={80} progressColor={ isDarkMode ? "#44d598" : "#00e66f"}/>
+      <h4>Offerter</h4>
+      <ProgressBar progress={35} progressColor={ isDarkMode ? "#e25050" : "#ff5050"}/>
+      </Grid>
+      <Grid item rowStart={2} colStart={1} colEnd={3}>
       <h3>Kunder</h3>
         <Table>
           <thead>
@@ -108,7 +112,20 @@ export default function HomePage() {
               })}
           </TableBody>
         </Table>
+        <AddButton function={{addCustomer, setAddCustomer}}/>
       </Grid>
+      {addCustomer && (<Grid item transitionIn rowStart={3} colStart={1} colEnd={3}>
+        <h3>Lägg till kund</h3>
+            <CustomCustomerForm
+          handleOnSubmit={handleOnSubmit}
+          buttonText="Lägg till"
+          />
+          {response && (
+            <>
+              <ErrorText>{response}</ErrorText>
+            </>
+          )}
+      </Grid >)}
       </Grid>
     </>
   );
