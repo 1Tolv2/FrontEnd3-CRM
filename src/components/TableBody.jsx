@@ -3,6 +3,9 @@ import styled from 'styled-components'
 import { DarkThemeContext } from "../App";
 
 const StyledTbody = styled.tbody`
+td {
+    padding: 10px 5px;
+}
 tr:nth-child(even){
     background-color: ${props => props.isDarkMode ? "#415358" : "#EBF5EE"};
 }

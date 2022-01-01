@@ -12,7 +12,8 @@ const StyledTable = styled.table`
     text-align: left;
     background-color: ${(props) => (props.isDarkMode ? "#79E2F2" : "#33cccc")};
     color: ${(props) => (props.isDarkMode ? "black" : "white")};
-    padding: 3px 5px;
+    padding: 3px 5px 15px 5px;
+    
     @media (max-width: 900px) {
       :nth-child(3) {
         display: none;
