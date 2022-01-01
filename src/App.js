@@ -5,7 +5,6 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import UserCreatePage from "./pages/UserCreatePage";
 import StartPage from "./pages/StartPage";
-import H1 from "./components/H1";
 import ModeSwitch from "./components/ModeSwitch";
 import { createGlobalStyle } from "styled-components";
 
