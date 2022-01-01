@@ -1,6 +1,9 @@
 import React, {useContext} from 'react'
 import styled from 'styled-components'
 import { DarkThemeContext } from "../App";
+import tokens from "./Tokens";
+
+const {lightTheme, darkTheme} = tokens
 
 const StyledTbody = styled.tbody`
 td {
@@ -10,10 +13,10 @@ tr {
     cursor: pointer;
 }
 tr:hover {
-    outline: solid ${(props) => (props.isDarkMode ? "#79E2F2" : "grey")} 2px;
+    outline: solid ${(props) => (props.isDarkMode ? darkTheme.lightBlue : lightTheme.darkGrey2)} 2px;
 }
 tr:nth-child(even){
-    background-color: ${props => props.isDarkMode ? "#415358" : "#EBF5EE"};
+    background-color: ${props => props.isDarkMode ? darkTheme.blueGrey : lightTheme.whiteGreen};
 }
 @media (max-width: 900px) {
     td:nth-child(3){

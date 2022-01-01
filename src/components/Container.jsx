@@ -1,11 +1,14 @@
 import React, {useContext} from 'react'
 import styled, {css} from 'styled-components'
 import { DarkThemeContext } from "../App";
+import tokens from './Tokens';
+
+const {lightTheme, darkTheme} = tokens
 
 const StyledContainer = styled.div`
 width: ${props => props.width}px;
 padding: 5px 20px;
-background-color: ${props => props.isDarkMode ? "#333333" : "white"};
+background-color: ${props => props.isDarkMode ? darkTheme.darkGrey2 : lightTheme.white};
 margin: 10px;
 transition: 0.4s;
 

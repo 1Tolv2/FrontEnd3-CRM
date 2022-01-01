@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import UserInformation from "../components/UserInformation";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { CustomerContext } from "../App";
 import CustomCustomerForm from "../components/CustomCustomerForm";
 import Table from "../components/Table";
@@ -10,6 +10,8 @@ import Grid from "../components/Grid";
 import AddButton from "../components/AddButton";
 import ProgressBar from "../components/ProgressBar";
 import { DarkThemeContext } from "../App";
+import tokens from "../components/Tokens";
+const {lightTheme, darkTheme} = tokens
 
 const url = "https://frebi.willandskill.eu/api/v1/customers";
 let token;
@@ -77,11 +79,11 @@ export default function HomePage() {
 
       <Grid item colStart={3} colEnd={5}><h3>Mål</h3> 
       <h4>Säljsamtal</h4>
-      <ProgressBar progress={47} progressColor={ isDarkMode ? "#6e78dd" : "#303ecf"}/>
+      <ProgressBar progress={47} progressColor={ isDarkMode ? darkTheme.purpleBlue : lightTheme.blue}/>
       <h4>Bokade möten</h4>
-      <ProgressBar progress={80} progressColor={ isDarkMode ? "#44d598" : "#00e66f"}/>
+      <ProgressBar progress={80} progressColor={ isDarkMode ? darkTheme.lightGreen : lightTheme.lightGreen}/>
       <h4>Offerter</h4>
-      <ProgressBar progress={35} progressColor={ isDarkMode ? "#e25050" : "#ff5050"}/>
+      <ProgressBar progress={35} progressColor={ isDarkMode ? darkTheme.paleRed : lightTheme.paleRed}/>
       </Grid>
       <Grid item rowStart={2} colStart={1} colEnd={3}>
       <h3>Kunder</h3>

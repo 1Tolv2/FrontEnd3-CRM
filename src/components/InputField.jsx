@@ -1,19 +1,22 @@
 import React, {useContext} from 'react'
 import styled from 'styled-components'
 import { DarkThemeContext } from "../App";
+import tokens from './Tokens';
+
+const {lightTheme, darkTheme} = tokens
 
 const Input = styled.input`
 border: solid grey 1.5px;
 height: 15px;
-background-color: ${props => props.isDarkMode ? "#757575" : "white"};
-border-color: ${props => props.isDarkMode ? "#757575" : "grey"};
+background-color: ${props => props.isDarkMode ? darkTheme.darkGrey4 : lightTheme.white};
+border-color: ${props => props.isDarkMode ? darkTheme.darkGrey4 : lightTheme.darkGrey2};
 border-radius: 3px;
 &:invalid:focus {
     border-color: red;
     outline: none !important;
     }
 &:valid {
-border-color: ${props => props.isDarkMode ? "#757575" : "grey"};
+border-color: ${props => props.isDarkMode ? darkTheme.darkGrey4 : lightTheme.darkGrey2};
 }
 &:valid:focus{
     outline: none;

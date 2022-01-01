@@ -1,13 +1,16 @@
 import React, {useContext} from 'react'
 import styled from 'styled-components'
 import { DarkThemeContext } from "../App";
+import tokens from './Tokens';
+
+const {lightTheme, darkTheme} = tokens
 
 const StyledForm = styled.form`
   display: grid;
   grid-template-columns: ${props => props.gridColTemplate};
   grid-row-gap: 5px;
   grid-column-gap: 10px;
-  background-color: ${props => props.isDarkMode ? "#333333" : "white"};
+  background-color: ${props => props.isDarkMode ? darkTheme.darkGrey2 : lightTheme.white};
   padding: 20px;
   transition: 0.4s;
 

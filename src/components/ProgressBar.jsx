@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { DarkThemeContext } from "../App";
+import tokens from "./Tokens";
+
+const {lightTheme, darkTheme} = tokens
 
 const Bar = styled.div`
   position: relative;
   display: inline-block;
-  background-color: ${(props) => (props.isDarkMode ? "#757575" : "#ccc")};
+  background-color: ${(props) => (props.isDarkMode ? darkTheme.darkGrey4 : lightTheme.grey)};
   width: 100%;
   height: 15px;
   border-radius: 5px;

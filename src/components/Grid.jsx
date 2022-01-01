@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import styled, { css } from "styled-components";
 import { DarkThemeContext } from "../App";
+import tokens from "./Tokens";
+
+const {lightTheme, darkTheme} = tokens
 
 const Grid = styled.div`
   display: grid;
@@ -27,7 +30,7 @@ const Item = styled.div`
   grid-row-end: ${(props) => props.rowEnd};
   width: ${(props) => props.width}px;
   padding: 5px 20px 5px 20px;
-  background-color: ${(props) => (props.isDarkMode ? "#333333" : "white")};
+  background-color: ${(props) => (props.isDarkMode ? darkTheme.darkGrey2 : lightTheme.white)};
 
   ${(props) =>
     props.transitionIn &&

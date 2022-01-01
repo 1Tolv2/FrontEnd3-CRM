@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import { DarkThemeContext } from "../App";
 import styled from "styled-components";
+import tokens from "./Tokens";
+
+const {lightTheme, darkTheme} = tokens
 
 const Slider = styled.span`
   position: absolute;
@@ -9,7 +12,7 @@ const Slider = styled.span`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: ${(props) => (props.isDarkMode ? "#424242" : "#ccc")};
+  background-color: ${(props) => (props.isDarkMode ? darkTheme.darkGrey3 : lightTheme.grey)};
   transition: 0.4s;
   &:before {
     position: absolute;
@@ -18,7 +21,7 @@ const Slider = styled.span`
     width: 17px;
     left: 5px;
     bottom: 4px;
-    background-color: ${(props) => (props.isDarkMode ? "#212121" : "white")};
+    background-color: ${(props) => (props.isDarkMode ? darkTheme.darkGrey1 : lightTheme.white)};
     transition: 0.4s;
   }
 `;

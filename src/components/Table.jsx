@@ -1,17 +1,20 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { DarkThemeContext } from "../App";
+import tokens from "./Tokens";
+
+const {lightTheme, darkTheme} = tokens
 
 const StyledTable = styled.table`
   margin: 5px 0;
-  background-color: ${(props) => (props.isDarkMode ? "#333333" : "white")};
+  background-color: ${(props) => (props.isDarkMode ? darkTheme.darkGrey2 : lightTheme.white)};
   width: 100%;
   overflow-y: scroll;
   border-collapse: collapse;
   th {
     text-align: left;
-    background-color: ${(props) => (props.isDarkMode ? "#79E2F2" : "#33cccc")};
-    color: ${(props) => (props.isDarkMode ? "black" : "white")};
+    background-color: ${(props) => (props.isDarkMode ? darkTheme.lightBlue : lightTheme.lightBlue)};
+    color: ${(props) => (props.isDarkMode ? darkTheme.black : lightTheme.white)};
     padding: 3px 5px 15px 5px;
     
     @media (max-width: 900px) {
