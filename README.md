@@ -104,7 +104,7 @@ Features on the home page:
 * VG: Have a delete button that removes the customer (DELETE /api/v1/customers/${id}). After the customer is deleted navigate to the home page. (/home)
 * VG: Give the user the possibility to change the customers information (PUT/PATCH)
 
-#### 4. VG: Create a new user
+#### 4. VG: Create a user
 Add the feature to create a user (PUT /auth/users).
 The email that is used will receive an activation email, so you need to be able to access that email.
 
@@ -159,9 +159,9 @@ These are the softwares that I have used during the building of this project
    npm install
    ```
 3. Type the following command to begin development mode.
-```sh
-npm start
-```
+   ```sh
+   npm start
+   ```
 4. Open <a href="http://http://localhost:3000/">http://http://localhost:3000/</a> in your prefered browser.
 The page reloads as you make changes and save your code.
 
@@ -175,7 +175,7 @@ Here are som links to that I've found very helpful during the development and I 
 
 * [Regex cheat sheet](https://www.rexegg.com/regex-quickstart.html)
 * [UX Collective: Dark mode guide](https://uxdesign.cc/dark-mode-ui-design-the-definitive-guide-part-1-color-53dcfaea5129)
-* [Medium](https://medium.com/) I just generally found all the information posted by users here extremly helpful!
+* [Medium](https://medium.com/) *I just generally found all the information posted by users here extremly helpful!*
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
