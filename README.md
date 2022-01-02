@@ -1,70 +1,197 @@
-# Getting Started with Create React App
+# About the Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div id="top"></div>
 
-## Available Scripts
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/1Tolv2/js3-crm">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="Logo" width="80" height="80">
+  </a>
 
-In the project directory, you can run:
+<h3 align="center">js3-crm</h3>
 
-### `npm start`
+  <p align="center">
+    CRM app built in React as my Front End 3 examination project
+    <br />
+    <a href="https://github.com/1Tolv2/js3-crm"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/1Tolv2/js3-crm/issues">Report Bug</a>
+  </p>
+</div>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+	<li><a href="#graded-requirements">Graded requirements<a>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+This Customer Relationship Management app, CRM, is my examination project for my Front End 3 course.
+The project determines my final grade, we have a grade system of G, good, and VG, very good so I will have the parts marked with VG that were needed to be incorporated to get that specific grade. The API is provided by our teacher.
+The features progress bars are just dummies and not functioning bars.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Graded requirements
 
-### `npm run eject`
+Following are the requirements of the examination project and what we needed to show that we were able to use.
+* React
+* JSX
+* React Router DOM
+* useState
+* useEffect
+* VG: useContext (save customer list and logged in user in Context)
+* Styled Components
+** Create styled components
+** VG: inherit CSS-properties from other components
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### 1. Log in user
+Here there will be input field displayed for email and password with a log in button. When the button is pressed a call is
+made to /api-token-auth/ with the email and password. In response we will receive a token.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### 2. Home page
+When the user logged in successfully, we navigate to /home
+Features on the home page:
+* List all customers which is connected to the user (GET /api/v1/customers)
+* Give the user the ability to add customers (POST /api/v1/customers)
+  - The user is going to need to register the following values to create a customer:
+    - name: string (required by the API)
+    - organisationNr: string
+    - vatNr: string
+      - VG: Validate the input field so that it follows the format SE followed by 10 numbers
+    - reference: string
+    - paymentTerm: integer (If not added will automatically be put to 30)
+    - website: string
+    - email: string
+    - phoneNumber: string
+  - When the new customer has been created the customer list will be updated
+* Show what user is logged in (api/v1/me) with the following information:
+  - email, firstName and lastName
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### 3. Detail view of specific customer
+* The specific customers information will be displayed:
+  - name
+  - organisationNr
+  - vatNr
+  - reference
+  - paymentTerm
+  - website
+  - email
+  - phoneNumber
+* VG: Have a delete button that removes the customer (DELETE /api/v1/customers/${id}). After the customer is deleted navigate to the home page. (/home)
+* VG: Give the user the possibility to change the customers information (PUT/PATCH)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### 4. VG: Create a user
+Add the feature to create a user (PUT /auth/users).
+The email that is used will receive an activation email, so you need to be able to access that email.
 
-## Learn More
+#### 5. VG: Activate user
+In the email you receive you get a link with a uid and a token. When clicked we get to our /login page, use useLocation and URLSearchParams to get the uid and token.
+When we have those we will POST the uid and token to auth/users/activate.
+After successfully activating the user, navigate to /login without the uid and token parameter.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+### Built With
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+* [React.js](https://reactjs.org/)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+<!-- GETTING STARTED -->
+## Getting Started
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+To get a local copy up and running follow the information down below.
 
-### `npm run build` fails to minify
+### Prerequisites
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+These are the softwares that I have used during the building of this project
+* npm
+  ```sh
+  npm install npm@latest -g
+  ```
+* React Router DOM (installed locally in the app)
+  ```sh
+  npm install react-router-dom
+  ```
+  * Styled Components (installed locally in the app)
+  ```sh
+  npm install styled-components
+  ```
+
+### Installation
+ 
+1. First start cloning the repo by entering the below command in your terminal.
+   ```sh
+   git clone https://github.com/1Tolv2/js3-crm.git
+   ```
+2. After cloning the repository, cd in to the new folder and type the below command.
+   ```sh
+   npm install
+   ```
+3. Type the following command to begin development mode.
+   ```sh
+   npm start
+   ```
+4. Open <a href="http://http://localhost:3000/">http://http://localhost:3000/</a> in your prefered browser.
+The page reloads as you make changes and save your code.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
+
+Here are som links to that I've found very helpful during the development and I would like to give credit to.
+
+* [Regex cheat sheet](https://www.rexegg.com/regex-quickstart.html)
+* [UX Collective: Dark mode guide](https://uxdesign.cc/dark-mode-ui-design-the-definitive-guide-part-1-color-53dcfaea5129)
+* [Medium](https://medium.com/) *I just generally found all the information posted by users here extremly helpful!*
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/1Tolv2/js3-crm.svg?style=for-the-badge
+[contributors-url]: https://github.com/1Tolv2/js3-crm/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/1Tolv2/js3-crm.svg?style=for-the-badge
+[forks-url]: https://github.com/1Tolv2/js3-crm/network/members
+[stars-shield]: https://img.shields.io/github/stars/1Tolv2/js3-crm.svg?style=for-the-badge
+[stars-url]: https://github.com/1Tolv2/js3-crm/stargazers
+[issues-shield]: https://img.shields.io/github/issues/1Tolv2/js3-crm.svg?style=for-the-badge
+[issues-url]: https://github.com/1Tolv2/js3-crm/issues
+[license-shield]: https://img.shields.io/github/license/1Tolv2/js3-crm.svg?style=for-the-badge
+[license-url]: https://github.com/1Tolv2/js3-crm/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/sofia-johnsson-s-856308188/
+[product-screenshot]: images/screenshot.png
