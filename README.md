@@ -18,6 +18,7 @@
     <br />
     <br />
     <a href="https://github.com/1Tolv2/FrontEnd3-CRM/issues">Propose Feature</a>
+	  ·
     <a href="https://github.com/1Tolv2/FrontEnd3-CRM/issues">Report Bug</a>
   </p>
 </div>
