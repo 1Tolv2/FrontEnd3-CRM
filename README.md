@@ -1,7 +1,5 @@
 # About the Project
 
-## Built With
-
 <div id="top"></div>
 
 <!-- PROJECT LOGO -->
