@@ -5,7 +5,7 @@ import InputField from "../components/InputField";
 import Button from "../components/Button";
 import Container from "../components/Container";
 import H1 from "../components/H1";
-import ErrorText from "../components/ErrorText";
+import ErrorResponse from "../components/ErrorResponse";
 
 export default function LoginPage() {
   const [response, setResponse] = useState(null);
@@ -80,11 +80,12 @@ export default function LoginPage() {
           labelText="Lösenord:"
           required
         />
+      {response && <ErrorResponse>{response}</ErrorResponse>}
+
         <Button gridButton colStart={1} colEnd={3} width={100}>
           Logga in
         </Button>
       </Form>
-      {response && <ErrorText>{response}</ErrorText>}
       <p>
         Saknar användare? <Link to="/create-user">Klicka här</Link> för att
         skapa en.

@@ -39,7 +39,7 @@ const Item = styled.div`
 
       @keyframes display{
         0% {
-          transform: translateY(-100%) scale(0.9);
+          transform: translateY(-100%) scale(0.95);
           z-index: -1;
       }
       100% {

@@ -10,12 +10,19 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
 body {
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+height: 100%;
 margin: 0;
 font-family: "calibri";
 background-color: ${(props) => (props.isDarkMode ? "#212121" : "#ebebeb")};
 color: ${(props) => (props.isDarkMode ? "#e0e0e0" : "black")};
 transition: background-color 0.4s;
 };
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
 a {
   text-decoration: none;
   color: inherit;
