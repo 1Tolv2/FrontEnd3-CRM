@@ -66,10 +66,6 @@ export default function HomePage() {
         data.hasOwnProperty("detail") ? setResponse(data.detail) : renderCustomerList();      
       });
   }
-
-  function linkToCustomer(id) {
-    navigate(`/customer/${id}`)
-  }
   return (
     <>
     <Grid gap gridColTemplate={"auto auto auto auto"}>

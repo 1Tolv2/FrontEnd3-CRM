@@ -10,7 +10,7 @@ width: ${props => props.width}px;
 padding: 5px 20px;
 background-color: ${props => props.isDarkMode ? darkTheme.darkGrey2 : lightTheme.white};
 margin: 10px;
-transition: 0.4s;
+transition: background-color 0.4s;
 
 `
 const CenteredContainer = styled(StyledContainer)`

@@ -9,7 +9,7 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: ${(props) => props.gridColTemplate};
   padding: 10px;
-  transition: 0.4s;
+  transition: background-color 0.4s;
 
   ${(props) =>
     props.gap &&
@@ -31,6 +31,8 @@ const Item = styled.div`
   width: ${(props) => props.width}px;
   padding: 5px 20px 5px 20px;
   background-color: ${(props) => (props.isDarkMode ? darkTheme.darkGrey2 : lightTheme.white)};
+  transition: background-color 0.4s;
+
 
   ${(props) =>
     props.transitionIn &&

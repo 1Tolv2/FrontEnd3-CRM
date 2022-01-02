@@ -12,7 +12,7 @@ const StyledForm = styled.form`
   grid-column-gap: 10px;
   background-color: ${props => props.isDarkMode ? darkTheme.darkGrey2 : lightTheme.white};
   padding: 20px;
-  transition: 0.4s;
+  transition: background-color 0.4s;
 
   @media (max-width: 700px) {
     display: flex;
