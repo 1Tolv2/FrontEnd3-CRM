@@ -17,8 +17,6 @@
     <a href="https://github.com/1Tolv2/js3-crm"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/1Tolv2/js3-crm">View Demo</a>
-    ·
     <a href="https://github.com/1Tolv2/js3-crm/issues">Report Bug</a>
   </p>
 </div>
