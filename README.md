@@ -130,7 +130,7 @@ After successfully activating the user, navigate to /login without the uid and t
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get a local copy up and running follow these simple steps.
+To get a local copy up and running follow the information down below.
 
 ### Prerequisites
 
@@ -139,11 +139,11 @@ These are the softwares that I have used during the building of this project
   ```sh
   npm install npm@latest -g
   ```
-* React Router DOM (locally in the app)
+* React Router DOM (installed locally in the app)
   ```sh
   npm install react-router-dom
   ```
-  * Styled Components (locally in the app)
+  * Styled Components (installed locally in the app)
   ```sh
   npm install styled-components
   ```
