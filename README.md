@@ -77,30 +77,30 @@ When the user logged in successfully, we navigate to /home
 Features on the home page:
 * List all customers which is connected to the user (GET /api/v1/customers)
 * Give the user the ability to add customers (POST /api/v1/customers)
-** The user is going to need to register the following values to create a customer:
-*** name: string (required by the API)
-*** organisationNr: string
-*** vatNr: string
-**** VG: Validate the input field so that it follows the format SE followed by 10 numbers
-*** reference: string
-*** paymentTerm: integer (If not added will automatically be put to 30)
-*** website: string
-*** email: string
-*** phoneNumber: string
-** When the new customer has been created the customer list will be updated
+  - The user is going to need to register the following values to create a customer:
+    - name: string (required by the API)
+    - organisationNr: string
+    - vatNr: string
+      - VG: Validate the input field so that it follows the format SE followed by 10 numbers
+    - reference: string
+    - paymentTerm: integer (If not added will automatically be put to 30)
+    - website: string
+    - email: string
+    - phoneNumber: string
+  - When the new customer has been created the customer list will be updated
 * Show what user is logged in (api/v1/me) with the following information:
-** email, firstName and lastName
+  - email, firstName and lastName
 
 #### 3. Detail view of specific customer
 * The specific customers information will be displayed:
-** name
-** organisationNr
-** vatNr
-** reference
-** paymentTerm
-** website
-** email
-** phoneNumber
+  - name
+  - organisationNr
+  - vatNr
+  - reference
+  - paymentTerm
+  - website
+  - email
+  - phoneNumber
 * VG: Have a delete button that removes the customer (DELETE /api/v1/customers/${id}). After the customer is deleted navigate to the home page. (/home)
 * VG: Give the user the possibility to change the customers information (PUT/PATCH)
 
