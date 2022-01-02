@@ -54,6 +54,7 @@
 
 This Customer Relationship Management app, CRM, is my examination project for my Front End 3 course.
 The project determines my final grade, we have a grade system of G, good, and VG, very good so I will have the parts marked with VG that were needed to be incorporated to get that specific grade. The API is provided by our teacher.
+The features progress bars are just dummies and not functioning bars.
 
 ### Graded requirements
 
