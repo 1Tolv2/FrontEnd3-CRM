@@ -56,9 +56,67 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+This Customer Relationship Management app, CRM, is my examination project for my Front End 3 course.
+The project determines my final grade, we have a grade system of G, good, and VG, very good so I will have the parts marked with VG that were needed to be incorporated to get that specific grade. The API is provided by our teacher.
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email`, `email_client`, `project_title`, `project_description`
+### Graded requirements
+
+Following are the requirements of the examination project and what we needed to show that we were able to use.
+* React
+* JSX
+* React Router DOM
+* useState
+* useEffect
+* VG: useContext (save customer list and logged in user in Context)
+* Styled Components
+** Create styled components
+** VG: inherit CSS-properties from other components
+
+#### 1. Log in user
+Here there will be input field displayed for email and password with a log in button. When the button is pressed a call is
+made to /api-token-auth/ with the email and password. In response we will receive a token.
+
+#### 2. Home page
+When the user logged in successfully, we navigate to /home
+Features on the home page:
+* List all customers which is connected to the user (GET /api/v1/customers)
+* Give the user the ability to add customers (POST /api/v1/customers)
+** The user is going to need to register the following values to create a customer:
+*** name: string (required by the API)
+*** organisationNr: string
+*** vatNr: string
+**** VG: Validate the input field so that it follows the format SE followed by 10 numbers
+*** reference: string
+*** paymentTerm: integer (If not added will automatically be put to 30)
+*** website: string
+*** email: string
+*** phoneNumber: string
+** When the new customer has been created the customer list will be updated
+* Show what user is logged in (api/v1/me) with the following information:
+** email, firstName and lastName
+
+#### 3. Detail view of specific customer
+* The specific customers information will be displayed:
+** name
+** organisationNr
+** vatNr
+** reference
+** paymentTerm
+** website
+** email
+** phoneNumber
+* VG: Have a delete button that removes the customer (DELETE /api/v1/customers/${id}). After the customer is deleted navigate to the home page. (/home)
+* VG: Give the user the possibility to change the customers information (PUT/PATCH)
+
+#### 4. VG: Create a new user
+Add the feature to create a user (PUT /auth/users).
+The email that is used will receive an activation email, so you need to be able to access that email.
+
+#### 5. VG: Activate user
+In the email you receive you get a link with a uid and a token. When clicked we get to our /login page, use useLocation and URLSearchParams to get the uid and token.
+When we have those we will POST the uid and token to auth/users/activate.
+After successfully activating the user, navigate to /login without the uid and token parameter.
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -80,16 +138,16 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+These are the softwares that I have used during the building of this project
 * npm
   ```sh
   npm install npm@latest -g
   ```
-* React Router DOM
+* React Router DOM (locally in the app)
   ```sh
   npm install react-router-dom
   ```
-  * Styled Components
+  * Styled Components (locally in the app)
   ```sh
   npm install styled-components
   ```
@@ -121,7 +179,7 @@ Here are som links to that I've found very helpful during the development and I 
 
 * [Regex cheat sheet](https://www.rexegg.com/regex-quickstart.html)
 * [UX Collective: Dark mode guide](https://uxdesign.cc/dark-mode-ui-design-the-definitive-guide-part-1-color-53dcfaea5129)
-* []()
+* [Medium](https://medium.com/) I just generally found all the information posted by users here extremly helpful!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
