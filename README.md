@@ -5,19 +5,20 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/1Tolv2/js3-crm">
+  <a href="https://github.com/1Tolv2/FrontEnd3-CRM">
     <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">js3-crm</h3>
+<h3 align="center">FrontEnd3 CRM</h3>
 
   <p align="center">
     CRM app built in React as my Front End 3 examination project
     <br />
-    <a href="https://github.com/1Tolv2/js3-crm"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/1Tolv2/FrontEnd3-CRM"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/1Tolv2/js3-crm/issues">Report Bug</a>
+    <a href="https://github.com/1Tolv2/FrontEnd3-CRM/issues">Propose Feature</a>
+    <a href="https://github.com/1Tolv2/FrontEnd3-CRM/issues">Report Bug</a>
   </p>
 </div>
 
@@ -151,7 +152,7 @@ These are the softwares that I have used during the building of this project
  
 1. First start cloning the repo by entering the below command in your terminal.
    ```sh
-   git clone https://github.com/1Tolv2/js3-crm.git
+   git clone https://github.com/1Tolv2/FrontEnd3-CRM.git
    ```
 2. After cloning the repository, cd in to the new folder and type the below command.
    ```sh
@@ -175,23 +176,6 @@ Here are som links to that I've found very helpful during the development and I 
 * [Regex cheat sheet](https://www.rexegg.com/regex-quickstart.html)
 * [UX Collective: Dark mode guide](https://uxdesign.cc/dark-mode-ui-design-the-definitive-guide-part-1-color-53dcfaea5129)
 * [Medium](https://medium.com/) *I just generally found all the information posted by users here extremly helpful!*
+* [README template](https://github.com/othneildrew/Best-README-Template)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/1Tolv2/js3-crm.svg?style=for-the-badge
-[contributors-url]: https://github.com/1Tolv2/js3-crm/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/1Tolv2/js3-crm.svg?style=for-the-badge
-[forks-url]: https://github.com/1Tolv2/js3-crm/network/members
-[stars-shield]: https://img.shields.io/github/stars/1Tolv2/js3-crm.svg?style=for-the-badge
-[stars-url]: https://github.com/1Tolv2/js3-crm/stargazers
-[issues-shield]: https://img.shields.io/github/issues/1Tolv2/js3-crm.svg?style=for-the-badge
-[issues-url]: https://github.com/1Tolv2/js3-crm/issues
-[license-shield]: https://img.shields.io/github/license/1Tolv2/js3-crm.svg?style=for-the-badge
-[license-url]: https://github.com/1Tolv2/js3-crm/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://www.linkedin.com/in/sofia-johnsson-s-856308188/
-[product-screenshot]: images/screenshot.png
