@@ -20,8 +20,8 @@ const StyledForm = styled.form`
   }
 `;
 
-export default function Form({ handleOnSubmit, children, gridColTemplate}) {
+export default function Form({ handleOnSubmit, children, gridColTemplate, required}) {
   const {isDarkMode} = useContext(DarkThemeContext)
   
-  return <StyledForm onSubmit={handleOnSubmit} gridColTemplate={gridColTemplate} isDarkMode={isDarkMode}>{children}</StyledForm>;
+  return <StyledForm onSubmit={handleOnSubmit} gridColTemplate={gridColTemplate} required={required} isDarkMode={isDarkMode}>{children}</StyledForm>;
 }

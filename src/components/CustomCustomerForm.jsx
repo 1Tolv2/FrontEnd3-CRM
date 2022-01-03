@@ -3,7 +3,7 @@ import InputField from "./InputField";
 import Form from "./Form";
 import Button from "./Button";
 
-export default function CustomCustomerForm({ handleOnSubmit, buttonText, inputRes }) {
+export default function CustomCustomerForm({ handleOnSubmit, buttonText, nameRequired }) {
   const [name, setName] = useState("");
   const [organisationNr, setOrganisationNr] = useState("");
   const [vatNr, setVatNr] = useState("");
@@ -24,10 +24,10 @@ export default function CustomCustomerForm({ handleOnSubmit, buttonText, inputRe
         value={name}
         setValue={setName}
         labelText="Företagsnamn:"
-        required
+        required={nameRequired}
       />
       <InputField
-        type="number"
+        type="text"
         id="organisationNr"
         value={organisationNr}
         setValue={setOrganisationNr}
