@@ -50,7 +50,6 @@ export default function ModeSwitch() {
     setDarkMode(!isDarkMode);
   }
 
-  console.log(isDarkMode);
   return (
     <>
       <Switch className="switch">
