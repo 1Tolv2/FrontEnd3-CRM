@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { CustomerContext } from "../App";
 import Button from "../components/Button";
 import Grid from "../components/Grid"
 import CustomCustomerForm from "../components/CustomCustomerForm";
@@ -11,7 +10,6 @@ export default function CustomerDetailPage() {
 
   const navigate = useNavigate();
   let params = useParams();
-  const { customerList } = useContext(CustomerContext);
 
   const id = params.id;
   const url = `https://frebi.willandskill.eu/api/v1/customers/${id}/`;
