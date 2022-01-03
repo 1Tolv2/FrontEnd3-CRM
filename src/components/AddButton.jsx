@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { DarkThemeContext } from "../App";
 import tokens from "./Tokens";
@@ -52,17 +52,15 @@ const Icon = styled.div`
 
 export default function AddButton(props) {
   const { isDarkMode } = useContext(DarkThemeContext);
+  const [iconState, setIconState] = useState("close") 
 
-  function toggleIcon(e) {
-    console.log(e.target.children[0].classList[2]);
-    const icon = e.target.children[0];
+  function toggleIcon() {
     props.function.setAddCustomer(!props.function.addCustomer);
-      icon.classList.toggle("close");
-      icon.classList.toggle("open");
+    props.function.addCustomer ? setIconState("close") : setIconState("open");
   }
   return (
     <Button isDarkMode={isDarkMode} onClick={toggleIcon}>
-      <Icon className="close" isDarkMode={isDarkMode}/>
+      <Icon className={iconState} isDarkMode={isDarkMode}/>
     </Button>
   );
 }
