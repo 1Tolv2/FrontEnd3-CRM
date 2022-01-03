@@ -66,11 +66,11 @@ export default function HomePage() {
   return (
     <>
       <Grid gap gridColTemplate={"auto auto auto auto"}>
-        <Grid item rowStart={1} colStart={1} colEnd={5}>
+        <Grid item shadow rowStart={1} colStart={1} colEnd={5}>
           <UserInformation />
         </Grid>
 
-        <Grid item colStart={3} colEnd={5}>
+        <Grid item shadow colStart={3} colEnd={5}>
           <h3>Mål</h3>
           <h4>Säljsamtal</h4>
           <ProgressBar
@@ -90,7 +90,7 @@ export default function HomePage() {
             progressColor={isDarkMode ? darkTheme.paleRed : lightTheme.paleRed}
           />
         </Grid>
-        <Grid item rowStart={2} colStart={1} colEnd={3}>
+        <Grid item shadow rowStart={2} colStart={1} colEnd={3}>
           <h3>Kunder</h3>
           <Table>
             <thead>
@@ -128,11 +128,12 @@ export default function HomePage() {
         </Grid>
 
         {addCustomer && (
-          <Grid item transitionIn rowStart={3} colStart={1} colEnd={3}>
+          <Grid item shadow transitionIn rowStart={3} colStart={1} colEnd={3}>
             <h3>Lägg till kund</h3>
             <CustomCustomerForm
               handleOnSubmit={handleOnSubmit}
               buttonText="Lägg till"
+              nameRequired={true}
             />
             {response && (
               <>

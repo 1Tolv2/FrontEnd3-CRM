@@ -13,7 +13,8 @@ tr {
     cursor: pointer;
 }
 tr:hover {
-    outline: solid ${(props) => (props.isDarkMode ? darkTheme.lightBlue : lightTheme.darkGrey2)} 2px;
+    z-index: 2;
+    box-shadow: 0px 0px 10px ${props => (props.isDarkMode ? darkTheme.darkGrey2 : lightTheme.grey)};
 }
 tr:nth-child(even){
     background-color: ${props => props.isDarkMode ? darkTheme.blueGrey : lightTheme.whiteGreen};
