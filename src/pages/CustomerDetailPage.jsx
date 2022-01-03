@@ -22,15 +22,13 @@ export default function CustomerDetailPage() {
   };
   console.log(id);
 
-  function checkCustomerList() {
-    setCustomer(customerList.find((item) => item.id == id));
-    console.log(customer)
-  }
-
-
   useEffect(() => {
     !token && navigate("/login")
-    customerList ? checkCustomerList() : navigate("/home");
+
+    fetch(url, {
+      headers: headers,
+    }).then(res => res.json())
+    .then(data => setCustomer(data))
   }, []);
 
   function handleOnDelete() {
