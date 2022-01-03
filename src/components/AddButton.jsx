@@ -9,22 +9,23 @@ const Button = styled.button`
   position: relative;
   float: right;
   top: 20px;
-  width: 50px;
-  height: 50px;
+  width: 86px;
+  height: 40px;
   font-size: 2em;
   background-color: ${props => props.isDarkMode ? darkTheme.lightBlue : lightTheme.lightBlue};
-  border-radius: 50%;
+  color: ${props => props.isDarkMode ? darkTheme.black : lightTheme.white};
+  border-radius: 20px;
   border: none;
   cursor: pointer;
+  box-shadow: 0 0 20px ${props => props.isDarkMode ? darkTheme.darkGrey1 : lightTheme.grey};
 `;
 const Icon = styled.div`
   position: absolute;
-  top: 23px;
-  left: 11px;
+  top: 19px;
+  left: 13px;
   background-color: ${props => props.isDarkMode ? darkTheme.black : lightTheme.white};
-  width: 28px;
-  height: 3px;
-  border-radius: 20px;
+  width: 15px;
+  height: 2px;
   transform: rotate(90deg);
   pointer-events: none;
   transition: transform 0.4s ease-in-out;
@@ -34,13 +35,11 @@ const Icon = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    background-color:  ${props => props.isDarkMode ? darkTheme.black : lightTheme.white};
-    width: 28px;
-    height: 3px;
-    border-radius: 20px;
+    background-color: ${props => props.isDarkMode ? darkTheme.black : lightTheme.white};
+    width: 15px;
+    height: 2px;
     transform: rotate(90deg);
     pointer-events: none;
-    
   }
   &::before.open {
     transform: rotate(315deg) scale(1.1);
@@ -48,7 +47,17 @@ const Icon = styled.div`
   &.open {
     transform: rotate(315deg) scale(1.1);
   }
-`;
+`
+
+const ButtonText = styled.p`
+position: absolute;
+top: 0px;
+left: 40px;
+font-size: .4em;
+font-weight: bold;
+text-transform: uppercase;
+color: inherit;
+`
 
 export default function AddButton(props) {
   const { isDarkMode } = useContext(DarkThemeContext);
@@ -60,7 +69,7 @@ export default function AddButton(props) {
   }
   return (
     <Button isDarkMode={isDarkMode} onClick={toggleIcon}>
-      <Icon className={iconState} isDarkMode={isDarkMode}/>
+      <Icon className={iconState} isDarkMode={isDarkMode}/><ButtonText>Add</ButtonText>
     </Button>
   );
 }
