@@ -9,20 +9,20 @@ const Button = styled.button`
   position: relative;
   float: right;
   top: 20px;
-  width: 86px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   font-size: 2em;
   background-color: ${props => props.isDarkMode ? darkTheme.lightBlue : lightTheme.lightBlue};
   color: ${props => props.isDarkMode ? darkTheme.black : lightTheme.white};
-  border-radius: 20px;
+  border-radius: 100%;
   border: none;
   cursor: pointer;
   box-shadow: 0 0 20px ${props => props.isDarkMode ? darkTheme.darkGrey1 : lightTheme.grey};
 `;
 const Icon = styled.div`
   position: absolute;
-  top: 19px;
-  left: 13px;
+  top: 22px;
+  left: 15px;
   background-color: ${props => props.isDarkMode ? darkTheme.black : lightTheme.white};
   width: 15px;
   height: 2px;
@@ -69,7 +69,8 @@ export default function AddButton(props) {
   }
   return (
     <Button isDarkMode={isDarkMode} onClick={toggleIcon}>
-      <Icon className={iconState} isDarkMode={isDarkMode}/><ButtonText>Add</ButtonText>
+      <Icon className={iconState} isDarkMode={isDarkMode}/>
+      {/* <ButtonText>Add</ButtonText> */}
     </Button>
   );
 }
