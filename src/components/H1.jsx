@@ -2,12 +2,13 @@ import React, {useContext} from 'react'
 import styled from 'styled-components'
 import { DarkThemeContext } from "../App";
 import tokens from './Tokens';
+
 const {lightTheme, darkTheme} = tokens
 
 const Header = styled.h1`
 text-align: center;
 margin: 10px;
-color: ${props => props.isDarkMode ? "#e0e0e0" : lightTheme.black};
+color: ${props => props.isDarkMode ? darkTheme.lightGrey : lightTheme.black};
 letter-spacing: 10px;
 `
 export default function H1(props) {

@@ -81,9 +81,12 @@ export default function HomePage() {
                 <th>Company name</th>
                 <th>Org.no</th>
                 <th>VATno</th>
+                <th>Pay.Term</th>
+                <th>Website</th>
                 <th>Reference</th>
                 <th>E-mail</th>
                 <th>Tel.no</th>
+
               </tr>
             </thead>
             <TableBody>
@@ -99,6 +102,8 @@ export default function HomePage() {
                       <td>{item.name}</td>
                       <td>{item.organisationNr}</td>
                       <td>{item.vatNr}</td>
+                      <td>{item.paymentTerm} days</td>
+                      <td>{item.website}</td>
                       <td>{item.reference}</td>
                       <td>{item.email}</td>
                       <td>{item.phoneNumber}</td>
