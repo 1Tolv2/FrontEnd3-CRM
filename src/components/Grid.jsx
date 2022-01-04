@@ -34,7 +34,7 @@ const Grid = styled.div`
     css`
       gap: 10px;
     `}
-  @media (max-width: 1000px) {
+  @media (max-width: 1200px) {
     display: flex;
     flex-flow: column wrap;
     padding: 0;
@@ -67,8 +67,6 @@ position: relative;
   transition: background-color box-shadow 0.4s;
 
     `}
-  @media (max-width: 1000px) {
-    align-self: center;
 `;
 
 export default function GridContainer(props) {
