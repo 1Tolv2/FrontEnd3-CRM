@@ -14,6 +14,7 @@ const Slider = styled.span`
   bottom: 0;
   background-color: ${(props) => (props.isDarkMode ? darkTheme.darkGrey3 : lightTheme.grey)};
   transition: 0.4s;
+  z-index: 1;
   &:before {
     position: absolute;
     content: "";

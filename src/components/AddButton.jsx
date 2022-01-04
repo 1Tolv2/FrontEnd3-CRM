@@ -17,7 +17,12 @@ const Button = styled.button`
   border-radius: 100%;
   border: none;
   cursor: pointer;
+  z-index: 2;
   box-shadow: 0 0 20px ${props => props.isDarkMode ? darkTheme.darkGrey1 : lightTheme.grey};
+  transition: transform ease-out 0.6s;
+  &.open {
+    transform: translate(-400%);
+  }
 `;
 const Icon = styled.div`
   position: absolute;
@@ -26,7 +31,7 @@ const Icon = styled.div`
   background-color: ${props => props.isDarkMode ? darkTheme.black : lightTheme.white};
   width: 15px;
   height: 2px;
-  transform: rotate(90deg);
+  transform: rotate(-90deg);
   pointer-events: none;
   transition: transform 0.4s ease-in-out;
 
@@ -38,14 +43,14 @@ const Icon = styled.div`
     background-color: ${props => props.isDarkMode ? darkTheme.black : lightTheme.white};
     width: 15px;
     height: 2px;
-    transform: rotate(90deg);
+    transform: rotate(-90deg);
     pointer-events: none;
   }
   &::before.open {
-    transform: rotate(315deg) scale(1.1);
+    transform: rotate(-315deg) scale(1.1);
   }
   &.open {
-    transform: rotate(315deg) scale(1.1);
+    transform: rotate(-315deg) scale(1.1);
   }
 `
 
@@ -62,15 +67,15 @@ color: inherit;
 export default function AddButton(props) {
   const { isDarkMode } = useContext(DarkThemeContext);
   const [iconState, setIconState] = useState("close") 
+  console.log(props.state)
 
   function toggleIcon() {
-    props.function.setAddCustomer(!props.function.addCustomer);
-    props.function.addCustomer ? setIconState("close") : setIconState("open");
+    props.setState(!props.state);
+    props.state ? setIconState("close") : setIconState("open");
   }
   return (
-    <Button isDarkMode={isDarkMode} onClick={toggleIcon}>
+    <Button className={iconState} isDarkMode={isDarkMode} onClick={toggleIcon}>
       <Icon className={iconState} isDarkMode={isDarkMode}/>
-      {/* <ButtonText>Add</ButtonText> */}
     </Button>
   );
 }

@@ -6,8 +6,9 @@ const {lightTheme, darkTheme} = tokens
 
 const Header = styled.h1`
 text-align: center;
-margin: 5px;
-color: ${props => props.isDarkMode ? darkTheme.lightBlue2 : lightTheme.black};
+margin: 10px;
+color: ${props => props.isDarkMode ? "#e0e0e0" : lightTheme.black};
+letter-spacing: 10px;
 `
 export default function H1(props) {
     const {isDarkMode} = useContext(DarkThemeContext)

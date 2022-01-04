@@ -26,7 +26,6 @@ export default function ProgressBar(props) {
   const { isDarkMode } = useContext(DarkThemeContext);
   return (
     <>
-      <span>{props.progress}%</span>
       <Bar isDarkMode={isDarkMode}>
         <Progress
           progress={props.progress}

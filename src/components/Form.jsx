@@ -1,27 +1,22 @@
-import React, {useContext} from 'react'
-import styled from 'styled-components'
-import { DarkThemeContext } from "../App";
-import tokens from './Tokens';
+import React from "react";
+import styled from "styled-components";
 
-const {lightTheme, darkTheme} = tokens
 
 const StyledForm = styled.form`
-  display: grid;
-  grid-template-columns: ${props => props.gridColTemplate};
-  grid-row-gap: 5px;
-  grid-column-gap: 10px;
-  background-color: ${props => props.isDarkMode ? darkTheme.darkGrey2 : lightTheme.white};
-  padding: 20px;
-  transition: background-color 0.4s;
-
-  @media (max-width: 700px) {
-    display: flex;
-    flex-flow: column wrap;
-  }
+  display: flex;
+  grid-template-columns: 350px;
+  flex-flow: column wrap;
 `;
 
-export default function Form({ handleOnSubmit, children, gridColTemplate, required}) {
-  const {isDarkMode} = useContext(DarkThemeContext)
-  
-  return <StyledForm onSubmit={handleOnSubmit} gridColTemplate={gridColTemplate} required={required} isDarkMode={isDarkMode}>{children}</StyledForm>;
+export default function Form({
+  handleOnSubmit,
+  children,
+  required,
+}) {
+
+  return (
+    <>
+        <StyledForm onSubmit={handleOnSubmit} required={required}>{children}</StyledForm>
+    </>
+  );
 }

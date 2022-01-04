@@ -7,17 +7,14 @@ const {lightTheme, darkTheme} = tokens
 
 const StyledTbody = styled.tbody`
 td {
-    padding: 10px 5px;
+    padding: 15px 5px;
 }
 tr {
     cursor: pointer;
 }
 tr:hover {
     z-index: 2;
-    box-shadow: 0px 0px 10px ${props => (props.isDarkMode ? darkTheme.darkGrey2 : lightTheme.grey)};
-}
-tr:nth-child(even){
-    background-color: ${props => props.isDarkMode ? darkTheme.blueGrey : lightTheme.whiteGreen};
+    box-shadow: 0px 0px 10px ${props => (props.isDarkMode ? darkTheme.darkGrey1 : lightTheme.grey)};
 }
 @media (max-width: 900px) {
     td:nth-child(3){

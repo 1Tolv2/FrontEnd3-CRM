@@ -14,9 +14,9 @@ export default function CustomCustomerForm({ handleOnSubmit, buttonText, nameReq
   const [phoneNumber, setPhoneNumber] = useState("");
 
   return (
-    <Form
+    <Form small
       handleOnSubmit={handleOnSubmit}
-      gridColTemplate={"120px auto 100px auto"}
+      gridColTemplate={"auto auto"}
     >
       <InputField
         type="text"

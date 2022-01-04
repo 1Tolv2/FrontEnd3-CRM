@@ -11,10 +11,12 @@ const StyledTable = styled.table`
   width: 100%;
   overflow-y: scroll;
   border-collapse: collapse;
+  transition: background-color 0.4s;
+
   th {
     text-align: left;
-    background-color: ${(props) => (props.isDarkMode ? darkTheme.lightBlue : lightTheme.lightBlue)};
-    color: ${(props) => (props.isDarkMode ? darkTheme.black : lightTheme.white)};
+    color: ${(props) => (props.isDarkMode ? darkTheme.white : lightTheme.black)};
+    border-bottom: solid 2px ${(props) => (props.isDarkMode ? darkTheme.purplePink : lightTheme.blueGreen)};
     padding: 3px 5px 15px 5px;
     
     @media (max-width: 900px) {

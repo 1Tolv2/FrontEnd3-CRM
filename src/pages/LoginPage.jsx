@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import Container from "../components/Container";
 import H1 from "../components/H1";
 import ErrorResponse from "../components/ErrorResponse";
+import Background from "../components/Background";
 
 export default function LoginPage() {
   const [response, setResponse] = useState(null);
@@ -44,6 +45,7 @@ export default function LoginPage() {
 
   function handleOnSubmit(e) {
     e.preventDefault();
+    console.log("här")
     const payload = { email, password };
     console.log(payload);
     const url = "https://frebi.willandskill.eu/api-token-auth/";
@@ -55,41 +57,42 @@ export default function LoginPage() {
       .then((res) => res.json())
       .then((data) => {
         data.hasOwnProperty("nonFieldErrors") && setResponse(data.nonFieldErrors)
+        console.log(data)
         const token = data.token;
         localStorage.setItem("webb21-js3", token);
         token && navigate("/home"); //Ser till att du inte navigeras till /home innan du fått en token
       });
   }
   return (
-    <Container centered float width={350}>
-      <H1>iCRM</H1>
-      <Form handleOnSubmit={handleOnSubmit} gridColTemplate={"85px auto"}>
-        <InputField
-          type="text"
-          value={email}
-          id="email"
-          setValue={setEmail}
-          labelText="E-post:"
-          required
-        />
-        <InputField
-          type="password"
-          value={password}
-          id="password"
-          setValue={setPassword}
-          labelText="Lösenord:"
-          required
-        />
-      {response && <ErrorResponse>{response}</ErrorResponse>}
-
-        <Button gridButton colStart={1} colEnd={3} width={100}>
-          Logga in
-        </Button>
-      </Form>
-      <p>
-        Saknar användare? <Link to="/create-user">Klicka här</Link> för att
-        skapa en.
-      </p>
-    </Container>
+    <Background>
+      <Container centered float width={350}>
+        <H1>WorkSpace</H1>
+        <Form small handleOnSubmit={handleOnSubmit}>
+          <InputField
+            type="text"
+            value={email}
+            id="email"
+            setValue={setEmail}
+            labelText="E-post:"
+            required
+          /><br/>
+          <InputField
+            type="password"
+            value={password}
+            id="password"
+            setValue={setPassword}
+            labelText="Lösenord:"
+            required
+          />
+        {response && <ErrorResponse>{response}</ErrorResponse>}
+          <Button gridButton colStart={1} colEnd={3} width="100%">
+            Sign in
+          </Button>
+        </Form>
+        <p>
+          Don't have an account? <Link to="/create-user">Click here</Link> to create one.
+        </p>
+      </Container>
+    </Background>
   );
 }

@@ -8,10 +8,9 @@ import TableBody from "../components/TableBody";
 import ErrorText from "../components/ErrorText";
 import Grid from "../components/Grid";
 import AddButton from "../components/AddButton";
-import ProgressBar from "../components/ProgressBar";
-import { DarkThemeContext } from "../App";
-import tokens from "../components/Tokens";
-const { lightTheme, darkTheme } = tokens;
+import TeamModule from "../components/TeamModule";
+import ToDoList from "../components/ToDoList";
+import HiddenContainer from "../components/HiddenContainer";
 
 const url = "https://frebi.willandskill.eu/api/v1/customers";
 let token;
@@ -23,7 +22,6 @@ export default function HomePage() {
   const [response, setResponse] = useState(null);
   const [addCustomer, setAddCustomer] = useState(false);
   const { customerList, setCustomerList } = useContext(CustomerContext);
-  const { isDarkMode } = useContext(DarkThemeContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -65,42 +63,27 @@ export default function HomePage() {
   }
   return (
     <>
-      <Grid gap gridColTemplate={"auto auto auto auto"}>
-        <Grid item shadow rowStart={1} colStart={1} colEnd={5}>
+      <Grid gap gridColTemplate={"auto auto auto auto auto"}>
+        <Grid item padding shadow rowStart={1} colStart={1} colEnd={3}>
           <UserInformation />
         </Grid>
-
-        <Grid item shadow colStart={3} colEnd={5}>
-          <h3>Mål</h3>
-          <h4>Säljsamtal</h4>
-          <ProgressBar
-            progress={47}
-            progressColor={isDarkMode ? darkTheme.purpleBlue : lightTheme.blue}
-          />
-          <h4>Bokade möten</h4>
-          <ProgressBar
-            progress={80}
-            progressColor={
-              isDarkMode ? darkTheme.lightGreen : lightTheme.lightGreen
-            }
-          />
-          <h4>Offerter</h4>
-          <ProgressBar
-            progress={35}
-            progressColor={isDarkMode ? darkTheme.paleRed : lightTheme.paleRed}
-          />
+        <Grid item padding shadow rowStart={1} colStart={3} colEnd={6}>
+        <TeamModule/>
         </Grid>
-        <Grid item shadow rowStart={2} colStart={1} colEnd={3}>
-          <h3>Kunder</h3>
+        <Grid item padding shadow rowStart={2} colStart={1} colEnd={2}>
+        <ToDoList></ToDoList>
+        </Grid>
+        <Grid item padding shadow rowStart={2} colStart={2} colEnd={6}>
+          <h2>Kunder</h2>
           <Table>
             <thead>
               <tr>
-                <th>Företagsnamn</th>
-                <th>Org.nr</th>
-                <th>Moms.nr</th>
+                <th>Company name</th>
+                <th>Org.no</th>
+                <th>VATno</th>
                 <th>Reference</th>
-                <th>E-post</th>
-                <th>Tel.nr</th>
+                <th>E-mail</th>
+                <th>Tel.no</th>
               </tr>
             </thead>
             <TableBody>
@@ -124,15 +107,13 @@ export default function HomePage() {
                 })}
             </TableBody>
           </Table>
-          <AddButton function={{ addCustomer, setAddCustomer }} />
-        </Grid>
-
-        {addCustomer && (
-          <Grid item shadow transitionIn rowStart={3} colStart={1} colEnd={3}>
-            <h3>Lägg till kund</h3>
+          <AddButton state={ addCustomer } setState={setAddCustomer} />
+          {addCustomer && (
+          <HiddenContainer state={addCustomer}>
+            <h2>ADD CUSTOMER</h2>
             <CustomCustomerForm
               handleOnSubmit={handleOnSubmit}
-              buttonText="Lägg till"
+              buttonText="ADD"
               nameRequired={true}
             />
             {response && (
@@ -140,8 +121,9 @@ export default function HomePage() {
                 <ErrorText>{response}</ErrorText>
               </>
             )}
-          </Grid>
+          </HiddenContainer>
         )}
+        </Grid>
       </Grid>
     </>
   );

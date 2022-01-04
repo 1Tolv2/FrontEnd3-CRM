@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import Container from "../components/Container";
 import ErrorResponse from "../components/ErrorResponse"
+import H1 from "../components/H1";
+import Background from "../components/Background";
 
 export default function UserCreatePage() {
   const [firstName, setFirstName] = useState("");
@@ -35,54 +37,56 @@ export default function UserCreatePage() {
       .then((data) => data ? setResponse(Object.entries(data)[0][1][0]): console.log("no data"))
   }
   return (
-    <Container centered float width={350}>
-      <h2>Skapa användare</h2>
-      <Form handleOnSubmit={handleOnSubmit} gridColTemplate={"85px auto"}>
-        <InputField
-          type="text"
-          value={firstName}
-          id="firstName"
-          setValue={setFirstName}
-          labelText="Förnamn:"
-          required
-        />
-        <InputField
-          type="text"
-          value={lastName}
-          id="lastName"
-          setValue={setLastName}
-          labelText="Efternamn:"
-          required
-        />
-        <InputField
-          type="text"
-          value={email}
-          id="email"
-          setValue={setEmail}
-          labelText="E-post:"
-          title="Ange en giltig e-postadress"
-          pattern="^.+@.+\..+$"
-          required
-        />
-        <InputField
-          type="password"
-          value={password}
-          id="password"
-          setValue={setPassword}
-          labelText="Lösenord:"
-          title="Lösenordet måste vara minst 8 tecken"
-          pattern="^.{8,}$"
-          required
-        />
-        {response && <ErrorResponse>{response}</ErrorResponse>}
-        <Button gridButton colStart={1} colEnd={3} width={100}>
-          Skapa
-        </Button>
-      </Form>
-      <p>
-        Redan en användare? <Link to="/login">Klicka här</Link> för att komma
-        till inloggningssidan.
-      </p>
-    </Container>
+    <Background>
+      <Container centered float width={350}>
+        <H1>WorkSpace</H1>
+        <h2>Create user</h2>
+        <Form small handleOnSubmit={handleOnSubmit}>
+          <InputField
+            type="text"
+            value={firstName}
+            id="firstName"
+            setValue={setFirstName}
+            labelText="First name:"
+            required
+          /><br/>
+          <InputField
+            type="text"
+            value={lastName}
+            id="lastName"
+            setValue={setLastName}
+            labelText="Surname:"
+            required
+          /><br/>
+          <InputField
+            type="text"
+            value={email}
+            id="email"
+            setValue={setEmail}
+            labelText="E-mail:"
+            title="Enter a valid e-mail adress"
+            pattern="^.+@.+\..+$"
+            required
+          /><br/>
+          <InputField
+            type="password"
+            value={password}
+            id="password"
+            setValue={setPassword}
+            labelText="Password:"
+            title="The password must be atleast 8 characters"
+            pattern="^.{8,}$"
+            required
+          />
+          {response && <ErrorResponse>{response}</ErrorResponse>}
+          <Button gridButton colStart={1} colEnd={3} width="100%">
+            create
+          </Button>
+        </Form>
+        <p>
+          Already a user? <Link to="/login">Click here</Link> to get to the sign in page.
+        </p>
+      </Container>
+    </Background>
   );
 }

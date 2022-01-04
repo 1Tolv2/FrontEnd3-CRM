@@ -7,32 +7,51 @@ import UserCreatePage from "./pages/UserCreatePage";
 import StartPage from "./pages/StartPage";
 import ModeSwitch from "./components/ModeSwitch";
 import { createGlobalStyle } from "styled-components";
+import tokens from "./components/Tokens";
+
+const { lightTheme, darkTheme } = tokens;
 
 const GlobalStyle = createGlobalStyle`
 body {
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
-height: 100%;
 margin: 0;
+height: 100%;
+padding: 10px 10px;
 font-family: "calibri";
-background-color: ${(props) => (props.isDarkMode ? "#212121" : "#ebebeb")};
-color: ${(props) => (props.isDarkMode ? "#e0e0e0" : "black")};
+background-color: ${(props) =>
+  props.isDarkMode ? darkTheme.darkGrey1 : lightTheme.lightGrey};
+color: ${(props) =>
+  props.isDarkMode ? darkTheme.lightGrey : lightTheme.black};
 transition: background-color 0.4s;
 };
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+label {
+  margin: 5px 5px;
+}
 a {
   text-decoration: none;
   color: inherit;
   font-weight: bold;
 }
-.delete {
-  background-color: ${(props) => (props.isDarkMode ? "white" : "#ff3300")};
-}
 h3 {
   padding: 0 20px;
+}
+hr {
+  border: solid 0.1px ${(props) =>
+    props.isDarkMode ? darkTheme.darkGrey1 : lightTheme.darkGrey2};
+}
+.delete {
+  background-color: ${(props) =>
+    props.isDarkMode ? darkTheme.white : lightTheme.red};
+}
+.graph {
+  display: block;
+  width: 50%;
+  margin: auto;
 }
 `;
 const DarkThemeContext = createContext([]);
