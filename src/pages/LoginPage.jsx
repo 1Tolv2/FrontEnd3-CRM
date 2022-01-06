@@ -17,19 +17,15 @@ export default function LoginPage() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    const urlSearches = location.search;
-    const params = new URLSearchParams(urlSearches);
-    const searchParamsList = {};
+    const params = new URLSearchParams(location.search);
+    const uid = params.get("uid")
+    const token = params.get("token")
 
-    if (urlSearches !== "") {
-      for (const [key, value] of params) {
-        searchParamsList[`${key}`] = value;
-      }
-      console.log(searchParamsList.uid);
+    if (location.search !== "") {
       const url = "https://frebi.willandskill.eu/auth/users/activate/";
       const payload = {
-        uid: searchParamsList.uid,
-        token: searchParamsList.token,
+        uid,
+        token,
       };
       fetch(url, {
         method: "POST",
@@ -45,7 +41,6 @@ export default function LoginPage() {
 
   function handleOnSubmit(e) {
     e.preventDefault();
-    console.log("här")
     const payload = { email, password };
     console.log(payload);
     const url = "https://frebi.willandskill.eu/api-token-auth/";
@@ -73,7 +68,7 @@ export default function LoginPage() {
             value={email}
             id="email"
             setValue={setEmail}
-            labelText="E-post:"
+            labelText="E-mail:"
             required
           /><br/>
           <InputField
@@ -81,7 +76,7 @@ export default function LoginPage() {
             value={password}
             id="password"
             setValue={setPassword}
-            labelText="Lösenord:"
+            labelText="Password:"
             required
           />
         {response && <ErrorResponse>{response}</ErrorResponse>}
