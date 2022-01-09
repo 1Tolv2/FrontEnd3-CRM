@@ -23,7 +23,7 @@ export default function CustomCustomerForm({ handleOnSubmit, buttonText, nameReq
         id="name"
         value={name}
         setValue={setName}
-        labelText="Företagsnamn:"
+        labelText="Company Name:"
         required={nameRequired}
       />
       <InputField
@@ -31,15 +31,15 @@ export default function CustomCustomerForm({ handleOnSubmit, buttonText, nameReq
         id="organisationNr"
         value={organisationNr}
         setValue={setOrganisationNr}
-        labelText="Org.nummer:"
+        labelText="Org.no:"
       />
       <InputField
         type="text"
         id="vatNr"
         value={vatNr}
         setValue={setVatNr}
-        labelText="Momsnummer:"
-        title="Ange SE följt av 10 siffror."
+        labelText="VATno:"
+        title="Put SE followed by 10 numbers."
         pattern="^SE[0-9]{10}$"
       />
       <InputField
@@ -54,22 +54,22 @@ export default function CustomCustomerForm({ handleOnSubmit, buttonText, nameReq
         id="paymentTerm"
         value={paymentTerm}
         setValue={setPaymentTerm}
-        labelText="Betalningsvillkor:"
+        labelText="Payment Terms:"
       />
       <InputField
         type="text"
         id="website"
         value={website}
         setValue={setWebsite}
-        labelText="Hemsida:"
+        labelText="Website:"
       />
       <InputField
         type="text"
         id="email"
         value={email}
         setValue={setEmail}
-        labelText="E-post:"
-        title="Ange en giltig e-postadress"
+        labelText="E-mail:"
+        title="Use a valid e-mail"
         pattern=".+@.+\..+"
       />
       <InputField
@@ -77,7 +77,7 @@ export default function CustomCustomerForm({ handleOnSubmit, buttonText, nameReq
         id="phoneNumber"
         value={phoneNumber}
         setValue={setPhoneNumber}
-        labelText="Tel.nummer:"
+        labelText="Tel.no:"
       />
       <Button gridButton type="submit" colStart={4}>
         {buttonText}
