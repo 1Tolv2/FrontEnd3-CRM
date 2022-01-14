@@ -17,6 +17,9 @@ export default function LoginPage() {
   let navigate = useNavigate();
 
   useEffect(() => {
+    /* The token in the URL is a one-time-use token 
+    and expires if not used in a certain amount of time.
+    The API will return a stale token response if the token is no longer usable.*/
     const params = new URLSearchParams(location.search);
     const uid = params.get("uid")
     const token = params.get("token")
@@ -33,8 +36,7 @@ export default function LoginPage() {
         body: JSON.stringify(payload),
       })
         .then((res) => (res.ok ? navigate("/login") : res.json()))
-        .then((data) =>
-          data ? setResponse(Object.entries(data)[0]) : console.log("no data")
+        .then((data) => data ? setResponse(Object.entries(data)[0]) : console.log("no data")
         );
     }
   }, []);
