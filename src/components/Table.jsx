@@ -20,16 +20,15 @@ const StyledTable = styled.table`
     padding: 3px 5px 15px 5px;
     
     @media (max-width: 900px) {
-      :nth-child(3) {
+      :nth-child(3), :nth-child(4), :nth-child(5), :nth-child(6) {
         display: none;
       }
-    
       :nth-child(5) {
         display: none;
       }
     }
     @media (max-width: 650px) {
-      :nth-child(6) {
+      :nth-child(8) {
         display: none;
       }
     }

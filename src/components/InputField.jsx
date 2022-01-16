@@ -9,6 +9,7 @@ const Input = styled.input`
 border: none;
 border-bottom: 1px solid;
 height: 15px;
+width: 95%;
 margin: 5px;
 background-color: transparent;
 border-color: ${props => props.isDarkMode ? darkTheme.darkGrey4 : lightTheme.darkGrey2};

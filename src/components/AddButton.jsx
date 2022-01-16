@@ -8,7 +8,8 @@ const {lightTheme, darkTheme} = tokens
 const Button = styled.button`
   position: relative;
   float: right;
-  top: 20px;
+  top: -50%;
+  right: -35px;
   width: 45px;
   height: 45px;
   font-size: 2em;
@@ -21,8 +22,11 @@ const Button = styled.button`
   box-shadow: 0 0 20px ${props => props.isDarkMode ? darkTheme.darkGrey1 : lightTheme.grey};
   transition: transform ease-out 0.6s;
   &.open {
-    transform: translate(-400%);
+    transform: translate(-490%);
   }
+  @media (max-width: 1200px) {
+    left: 0px;
+    }
 `;
 const Icon = styled.div`
   position: absolute;
@@ -67,8 +71,6 @@ color: inherit;
 export default function AddButton(props) {
   const { isDarkMode } = useContext(DarkThemeContext);
   const [iconState, setIconState] = useState("close") 
-  console.log(props.state)
-
   function toggleIcon() {
     props.setState(!props.state);
     props.state ? setIconState("close") : setIconState("open");

@@ -17,14 +17,12 @@ tr:hover {
     box-shadow: 0px 0px 10px ${props => (props.isDarkMode ? darkTheme.darkGrey1 : lightTheme.grey)};
 }
 @media (max-width: 900px) {
-    td:nth-child(3){
-        display: none;
-    }
-    td:nth-child(5){
+
+    td:nth-child(3), td:nth-child(4), td:nth-child(5), td:nth-child(6){
         display: none;
     }
     @media (max-width: 650px) {
-        td:nth-child(6){
+    td:nth-child(8){
                 display: none;
             }
     }

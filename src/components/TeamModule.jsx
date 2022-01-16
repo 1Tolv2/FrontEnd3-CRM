@@ -4,8 +4,14 @@ import TeamCard from './TeamCard'
 
 const FlexBox = styled.div`
 display: flex;
-height: 160px;
+flex-flow: row wrap;
+height: fit-content;
 justify-content: space-evenly;
+align-content: center;
+@media (max-width: 800px) {
+    display: flex;
+    flex-flow: column wrap;
+  }
 `
 
 export default function TeamModule() {

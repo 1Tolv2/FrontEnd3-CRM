@@ -6,6 +6,7 @@ const StyledForm = styled.form`
   display: flex;
   grid-template-columns: 350px;
   flex-flow: column wrap;
+  align-content: center;
 `;
 
 export default function Form({
