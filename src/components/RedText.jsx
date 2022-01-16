@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import tokens from './Tokens'
 
-const RedText = styled.p`
+const StyledText = styled.p`
 color: ${tokens.lightTheme.red};
 margin: 0 0 10px 0;
 grid-column-start: ${props => props.colStart};
@@ -12,10 +12,10 @@ grid-row-end: ${props => props.rowEnd};
 `
 
 
-export default function ErrorText(props) {
+export default function RedText(props) {
     return (
-        <RedText colStart={props.colStart} colEnd={props.colEnd}>
+        <StyledText {...props}>
             {props.children}
-        </RedText>
+        </StyledText>
     )
 }
