@@ -18,7 +18,7 @@ const Item = styled.div`
   ${(props) =>
     props.container &&
     css`
-    padding: 5px 20px 5px 20px;
+    padding: 5px 20px 20px 20px;
     box-shadow: 0px 0px 20px
         ${(props) => (props.isDarkMode ? darkTheme.black : lightTheme.grey)};
     transition: background-color box-shadow 0.4s;

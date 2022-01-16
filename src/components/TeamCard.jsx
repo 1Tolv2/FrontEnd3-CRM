@@ -35,7 +35,7 @@ export default function TeamCard(props) {
   return (
     <Card isDarkMode={isDarkMode}>
       <h4>{props.name}</h4>
-      <img src="/avatar.svg"></img>
+      <img src="/avatar.svg" alt="Avatar"></img>
       <span>{props.value}</span>
       <ProgressBar progress={45} progressColor={lightTheme.blueGreen} />
     </Card>

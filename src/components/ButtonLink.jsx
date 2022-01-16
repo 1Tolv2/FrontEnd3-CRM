@@ -12,7 +12,8 @@ background-color: ${props => props.isDarkMode ? "none" : "#d62976"};
 border-radius: 30px;
 text-align: center;
 font-weight: bold;
-transition: 0.4s;
+transitions: 0.4s;
+
 `
 export default function ButtonLink(props) {
     const {isDarkMode} = useContext(DarkThemeContext)
