@@ -1,6 +1,7 @@
 import React from "react";
-import Container from "../components/Container";
 import { Link } from "react-router-dom";
+
+import CenteredContainer from "../components/CenteredContainer";
 import H1 from "../components/H1";
 import ButtonLink from "../components/ButtonLink";
 import Grid from "../components/Grid";
@@ -9,7 +10,7 @@ import Background from "../components/Background";
 export default function StartPage() {
   return (
     <Background>
-      <Container centered float width={400}>
+      <CenteredContainer>
         <H1>WorkSpace</H1>
         <Grid center gridColTemplate="auto auto">
           <Grid item>
@@ -23,7 +24,7 @@ export default function StartPage() {
             </Link>
           </Grid>
         </Grid>
-      </Container>
+      </CenteredContainer>
     </Background>
   );
 }
