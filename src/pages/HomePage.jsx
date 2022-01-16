@@ -1,79 +1,58 @@
 import React, { useContext, useEffect, useState } from "react";
-import UserInformation from "../components/UserInformation";
 import { useNavigate } from "react-router-dom";
+
+import UserInformation from "../components/UserInformation";
 import { CustomerContext } from "../App";
 import CustomCustomerForm from "../components/CustomCustomerForm";
 import Table from "../components/Table";
 import TableBody from "../components/TableBody";
-import ErrorText from "../components/ErrorText";
+import RedText from "../components/RedText";
 import Grid from "../components/Grid";
+import GridItem from "../components/GridItem";
 import AddButton from "../components/AddButton";
 import TeamModule from "../components/TeamModule";
 import ToDoList from "../components/ToDoList";
 import HiddenContainer from "../components/HiddenContainer";
+import api from "../components/api";
 
-const url = "https://frebi.willandskill.eu/api/v1/customers";
-let token;
-const headers = {
-  "Content-Type": "application/json",
-};
 
 export default function HomePage() {
-  const [response, setResponse] = useState(null);
+  const [errorResponse, setErrorResponse] = useState(null);
   const [addCustomer, setAddCustomer] = useState(false);
   const { customerList, setCustomerList } = useContext(CustomerContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    token = localStorage.getItem("webb21-js3");
-    headers["Authorization"] = `Bearer ${token}`;
-    token ? renderCustomerList() : navigate("/login");
+    const token = localStorage.getItem("Token");
+    if (token) {
+      api.getCustomerList(token, setCustomerList);
+    } else {
+      navigate("/login");
+    }
   }, []);
 
-  function renderCustomerList() {
-    fetch(url, {
-      headers: headers,
-    })
-      .then((res) => res.json())
-      .then((data) => setCustomerList(data.results));
-  }
   function handleOnSubmit(e) {
     e.preventDefault();
-
     const payload = {};
     const target = e.target;
-    console.log(target);
     for (let i = 0; i < target.length; i++) {
       target[i].value !== "" && (payload[target[i].id] = target[i].value);
     }
-    console.log(payload);
-
-    fetch(url, {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(payload),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        data.hasOwnProperty("detail")
-          ? setResponse(data.detail)
-          : renderCustomerList();
-      });
+    api.createCustomer(payload, setErrorResponse, setCustomerList)
   }
   return (
     <>
       <Grid gap gridColTemplate={"auto auto auto auto auto"}>
-        <Grid item padding shadow rowStart={1} colStart={1} colEnd={3}>
+        <GridItem container rowStart={1} colStart={1} colEnd={3}>
           <UserInformation />
-        </Grid>
-        <Grid item padding shadow rowStart={1} colStart={3} colEnd={6}>
-        <TeamModule/>
-        </Grid>
-        <Grid item padding shadow rowStart={2} colStart={1} colEnd={2}>
-        <ToDoList></ToDoList>
-        </Grid>
-        <Grid item padding shadow rowStart={2} colStart={2} colEnd={6}>
+        </GridItem>
+        <GridItem container rowStart={1} colStart={3} colEnd={6}>
+          <TeamModule />
+        </GridItem>
+        <GridItem container rowStart={2} colStart={1} colEnd={2}>
+          <ToDoList></ToDoList>
+        </GridItem>
+        <GridItem container rowStart={2} colStart={2} colEnd={6}>
           <h2>Kunder</h2>
           <Table>
             <thead>
@@ -86,7 +65,6 @@ export default function HomePage() {
                 <th>Reference</th>
                 <th>E-mail</th>
                 <th>Tel.no</th>
-
               </tr>
             </thead>
             <TableBody>
@@ -112,23 +90,23 @@ export default function HomePage() {
                 })}
             </TableBody>
           </Table>
-          <AddButton state={ addCustomer } setState={setAddCustomer} />
+          <AddButton state={addCustomer} setState={setAddCustomer} />
           {addCustomer && (
-          <HiddenContainer state={addCustomer}>
-            <h2>ADD CUSTOMER</h2>
-            <CustomCustomerForm
-              handleOnSubmit={handleOnSubmit}
-              buttonText="ADD"
-              nameRequired={true}
-            />
-            {response && (
-              <>
-                <ErrorText>{response}</ErrorText>
-              </>
-            )}
-          </HiddenContainer>
-        )}
-        </Grid>
+            <HiddenContainer state={addCustomer}>
+              <h2>ADD CUSTOMER</h2>
+              <CustomCustomerForm
+                handleOnSubmit={handleOnSubmit}
+                buttonText="ADD"
+                nameRequired={true}
+              />
+              {errorResponse && (
+                <>
+                  <RedText>{errorResponse}</RedText>
+                </>
+              )}
+            </HiddenContainer>
+          )}
+        </GridItem>
       </Grid>
     </>
   );
