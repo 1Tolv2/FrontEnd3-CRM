@@ -1,12 +1,13 @@
 import React, { useState, createContext } from "react";
 import { Route, Routes } from "react-router-dom";
+import { createGlobalStyle } from "styled-components";
+
 import CustomerDetailPage from "./pages/CustomerDetailPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import UserCreatePage from "./pages/UserCreatePage";
 import StartPage from "./pages/StartPage";
 import ModeSwitch from "./components/ModeSwitch";
-import { createGlobalStyle } from "styled-components";
 import tokens from "./components/Tokens";
 
 const { lightTheme, darkTheme } = tokens;
@@ -24,6 +25,9 @@ background-color: ${(props) =>
 color: ${(props) =>
   props.isDarkMode ? darkTheme.lightGrey : lightTheme.black};
 transition: background-color 0.4s;
+@media (max-width: 1200px) {
+padding: 0;
+}
 };
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
