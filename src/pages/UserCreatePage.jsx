@@ -8,18 +8,19 @@ import CenteredContainer from "../components/CenteredContainer";
 import RedText from "../components/RedText"
 import H1 from "../components/H1";
 import Background from "../components/Background";
+import api from "../components/api";
 
 export default function UserCreatePage() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [response, setResponse] = useState("")
+  const [errorResponse, setErrorResponse] = useState("")
   const navigate = useNavigate();
 
   function handleOnSubmit(e) {
     e.preventDefault();
-    const url = "https://frebi.willandskill.eu/auth/users/";
+    
     const payload = {
       firstName,
       lastName,
@@ -28,14 +29,7 @@ export default function UserCreatePage() {
       organisationName: "My Company",
       organisationKind: "0",
     };
-    console.log(payload);
-    fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    })
-      .then((res) => (res.ok ? navigate("/login") : res.json()))
-      .then((data) => data ? setResponse(Object.entries(data)[0][1][0]): console.log("no data"))
+    api.createUser(payload, setErrorResponse, navigate)
   }
   return (
     <Background>
@@ -79,8 +73,8 @@ export default function UserCreatePage() {
             pattern="^.{8,}$"
             required
           />
-          {response && <RedText>{response}</RedText>}
-          <Button gridButton colStart={1} colEnd={3} width="100%">
+          {errorResponse && <RedText>{errorResponse}</RedText>}
+          <Button gridButton width="100%">
             create
           </Button>
         </Form>
