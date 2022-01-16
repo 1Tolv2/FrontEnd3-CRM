@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 import Form from "../components/Form";
 import InputField from "../components/InputField";
-import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
-import Container from "../components/Container";
-import ErrorResponse from "../components/ErrorResponse"
+import CenteredContainer from "../components/CenteredContainer";
+import RedText from "../components/RedText"
 import H1 from "../components/H1";
 import Background from "../components/Background";
 
@@ -38,7 +39,7 @@ export default function UserCreatePage() {
   }
   return (
     <Background>
-      <Container centered float width={350}>
+      <CenteredContainer>
         <H1>WorkSpace</H1>
         <h2>Create user</h2>
         <Form small handleOnSubmit={handleOnSubmit}>
@@ -78,7 +79,7 @@ export default function UserCreatePage() {
             pattern="^.{8,}$"
             required
           />
-          {response && <ErrorResponse>{response}</ErrorResponse>}
+          {response && <RedText>{response}</RedText>}
           <Button gridButton colStart={1} colEnd={3} width="100%">
             create
           </Button>
@@ -86,7 +87,7 @@ export default function UserCreatePage() {
         <p>
           Already a user? <Link to="/login">Click here</Link> to get to the sign in page.
         </p>
-      </Container>
+      </CenteredContainer>
     </Background>
   );
 }
