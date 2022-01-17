@@ -23,7 +23,7 @@ export default function HomePage() {
   const navigate = useNavigate();
 
   function renderCustomerList(token) {
-    api.getCustomer("GET", "api/v1/customers",token)
+    api.getAndRemoveCustomerData("GET", "api/v1/customers", token)
     .then((res) => res.json())
   .then((data) => setCustomerList(data.results));
   }
@@ -43,14 +43,14 @@ export default function HomePage() {
     for (let i = 0; i < target.length; i++) {
       target[i].value !== "" && (payload[target[i].id] = target[i].value);
     }
-    api.createCustomer(payload)
+    const token = localStorage.getItem("Token");
+    api.createCustomer(payload, token)
     .then((res) => res.json())
     .then((data) => {
       if (data.hasOwnProperty("detail")) {
         setErrorResponse(data.detail);
       } else {
-        const token = localStorage.getItem("Token");
-        api.renderCustomerList(token);
+        renderCustomerList(token);
       }
     });
   }
