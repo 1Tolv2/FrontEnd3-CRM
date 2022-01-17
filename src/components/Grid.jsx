@@ -9,16 +9,10 @@ const Grid = styled.div`
   @media (max-width: 1200px) {
     display: flex;
     flex-flow: column wrap;
-  padding: 20px 10px;
-
+    padding: 20px 10px;
   }
 `;
 
 export default function GridContainer(props) {
-
-  return (
-        <Grid {...props}>
-          {props.children}
-        </Grid>
-  );
+  return <Grid {...props}>{props.children}</Grid>;
 }

@@ -8,7 +8,7 @@ import CenteredContainer from "../components/CenteredContainer";
 import RedText from "../components/RedText"
 import H1 from "../components/H1";
 import Background from "../components/Background";
-import api from "../components/api";
+import {api} from "../components/api";
 
 export default function UserCreatePage() {
   const [firstName, setFirstName] = useState("");
@@ -29,7 +29,14 @@ export default function UserCreatePage() {
       organisationName: "My Company",
       organisationKind: "0",
     };
-    api.createUser(payload, setErrorResponse, navigate)
+    api.handleUser("auth/users/", payload)
+    .then((res) => {
+      if (!res.ok) {
+        res
+          .json()
+          .then((data) => setErrorResponse(Object.entries(data)[0][1][0]));
+      } else navigate("/login");
+    });
   }
   return (
     <Background>
