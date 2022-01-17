@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import api from "../components/api";
+import {api} from "../components/api";
 import Form from "../components/Form";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
@@ -19,15 +19,39 @@ export default function LoginPage() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    if (location.search !== "") {
-      api.activateUser(location.search, setErrorResponse, navigate)
-    }
+      /* The token in the URL is a one-time-use token 
+      and expires if not used in a certain amount of time.
+      The API will return a stale token response if the token is no longer usable.*/
+  const params = new URLSearchParams(location.search);
+  console.log(!(params.has("uid") && params.has("token")))
+    if (!(params.has("uid") && params.has("token"))) {
+        return;
+      } else {
+      api.handleUser("auth/users/activate/", {
+        uid: params.get("uid"),
+        token: params.get("token"),
+      })
+      .then((res) => {
+        if (!res.ok) {
+          res.json().then((data) => setErrorResponse("Expired authentication link used."))
+        }
+        navigate("/login");
+    })}
   }, []);
 
   function handleOnSubmit(e) {
     e.preventDefault();
     const payload = { email, password };
-    api.loginUser(payload, setErrorResponse, navigate)
+    api.handleUser("api-token-auth/", payload)
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.hasOwnProperty("nonFieldErrors")) {
+        setErrorResponse("Incorrect e-mail or password, please try again.");
+      } else {
+        localStorage.setItem("Token", data.token);
+        navigate("/home");
+      }
+    });
   }
   return (
     <Background>
@@ -50,7 +74,7 @@ export default function LoginPage() {
             labelText="Password:"
             required
           />
-          {errorResponse && <RedText>Incorrect e-mail or password provided. Please try again.</RedText>}
+          {errorResponse && <RedText>{errorResponse}</RedText>}
           <Button gridButton width="100%">
             Sign in
           </Button>

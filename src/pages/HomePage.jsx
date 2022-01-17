@@ -13,7 +13,7 @@ import AddButton from "../components/AddButton";
 import TeamModule from "../components/TeamModule";
 import ToDoList from "../components/ToDoList";
 import HiddenContainer from "../components/HiddenContainer";
-import api from "../components/api";
+import {api} from "../components/api";
 
 
 export default function HomePage() {
@@ -22,10 +22,15 @@ export default function HomePage() {
   const { customerList, setCustomerList } = useContext(CustomerContext);
   const navigate = useNavigate();
 
+  function renderCustomerList(token) {
+    api.getCustomer("GET", "api/v1/customers",token)
+    .then((res) => res.json())
+  .then((data) => setCustomerList(data.results));
+  }
   useEffect(() => {
     const token = localStorage.getItem("Token");
     if (token) {
-      api.getCustomerList(token, setCustomerList);
+      renderCustomerList(token)
     } else {
       navigate("/login");
     }
@@ -38,11 +43,20 @@ export default function HomePage() {
     for (let i = 0; i < target.length; i++) {
       target[i].value !== "" && (payload[target[i].id] = target[i].value);
     }
-    api.createCustomer(payload, setErrorResponse, setCustomerList)
+    api.createCustomer(payload)
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.hasOwnProperty("detail")) {
+        setErrorResponse(data.detail);
+      } else {
+        const token = localStorage.getItem("Token");
+        api.renderCustomerList(token);
+      }
+    });
   }
   return (
     <>
-      <Grid gap gridColTemplate={"auto auto auto auto auto"}>
+      <Grid gridColTemplate={"auto auto auto auto auto"}>
         <GridItem container rowStart={1} colStart={1} colEnd={3}>
           <UserInformation />
         </GridItem>

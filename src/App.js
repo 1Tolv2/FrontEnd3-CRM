@@ -54,7 +54,8 @@ hr {
 }
 .graph {
   display: block;
-  width: 50%;
+  max-width: 50%;
+  min-width: 250px;
   margin: auto;
 }
 `;

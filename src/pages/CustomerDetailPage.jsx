@@ -8,22 +8,33 @@ import H1 from "../components/H1";
 import HiddenContainer from "../components/HiddenContainer";
 import CustomCustomerForm from "../components/CustomCustomerForm";
 import AddButton from "../components/AddButton";
-import api from "../components/api";
+import { api } from "../components/api";
+import Table from "../components/Table";
+import TableBody from "../components/TableBody";
 
 export default function CustomerDetailPage() {
   const [customer, setCustomer] = useState(null);
   const [editCustomer, setEditCustomer] = useState(false);
 
   const navigate = useNavigate();
-  const url = `https://frebi.willandskill.eu/api/v1/customers/${useParams().id}/`;
+  const customerUrlEndpoint = `api/v1/customers/${
+    useParams().id
+  }/`;
   const token = localStorage.getItem("Token");
 
   useEffect(() => {
-    token ? api.getCustomer(url, token, setCustomer) : navigate("/login")
+    if (token) {
+      api
+        .getCustomer("GET", customerUrlEndpoint, token)
+        .then((res) => res.json())
+        .then((data) => setCustomer(data));
+    } else {
+      navigate("/login");
+    }
   }, []);
 
   function handleOnDelete() {
-    api.deleteCustomer(url, token, navigate)
+    api.getCustomer("DELETE", customerUrlEndpoint, token).then(() => navigate("/home"));
   }
 
   function handleOnSubmit(e) {
@@ -33,12 +44,14 @@ export default function CustomerDetailPage() {
     for (let i = 0; i < target.length; i++) {
       target[i].value !== "" && (payload[target[i].id] = target[i].value);
     }
-    api.editCustomer(url, payload, setCustomer);
+    api.editCustomer(customerUrlEndpoint, payload, token)
+    .then((res) => res.json())
+    .then((data) => setCustomer(data));
   }
   return (
     <>
       {customer && (
-        <Grid gap gridColTemplate={"auto auto auto auto"}>
+        <Grid gridColTemplate={"auto auto auto auto"}>
           <GridItem container colStart={1} colEnd={5}>
             <Link to="/home">
               <Button gridButton width="fit-content">
@@ -55,59 +68,42 @@ export default function CustomerDetailPage() {
               Delete
             </Button>
           </GridItem>
-          <GridItem container
-            rowStart={2}
-            rowEnd={4}
-            colStart={1}
-            colEnd={4}
-          >
+          <GridItem container rowStart={2} rowEnd={4} colStart={1} colEnd={4}>
             <img className="graph" src="/graph.svg" alt="graph"></img>
           </GridItem>
           <GridItem container colRowStart={2} colStart={4} colEnd={5}>
-            <Grid gridColTemplate={"100px auto"}>
-              <Grid item colStart={1} colEnd={2}>
-                Org.no:
-              </Grid>
-              <Grid item colStart={2} colEnd={3}>
-                {customer.organisationNr}
-              </Grid>
-              <Grid item colStart={1} colEnd={2}>
-                VATno:
-              </Grid>
-              <Grid item colStart={2} colEnd={3}>
-                {customer.vatNr}
-              </Grid>
-              <Grid item colStart={1} colEnd={2}>
-                Reference:
-              </Grid>
-              <Grid item colStart={2} colEnd={3}>
-                {customer.reference}
-              </Grid>
-              <Grid item colStart={1} colEnd={2}>
-                Pay.terms:
-              </Grid>
-              <Grid item colStart={2} colEnd={3}>
-                {customer.paymentTerm}
-              </Grid>
-              <Grid item colStart={1} colEnd={2}>
-                Website:
-              </Grid>
-              <Grid item colStart={2} colEnd={3}>
-                {customer.website}
-              </Grid>
-              <Grid item colStart={1} colEnd={2}>
-                E-mail:
-              </Grid>
-              <Grid item colStart={2} colEnd={3}>
-                {customer.email}
-              </Grid>
-              <Grid item colStart={1} colEnd={2}>
-                Tel.no:
-              </Grid>
-              <Grid item colStart={2} colEnd={3}>
-                {customer.phoneNumber}
-              </Grid>
-            </Grid>
+            <Table>
+              <TableBody>
+                <tr>
+                  <td>Org.no:</td>
+                  <td>{customer.organisationNr}</td>
+                </tr>
+                <tr>
+                  <td>VAT.no:</td>
+                  <td>{customer.vatNr}</td>
+                </tr>
+                <tr>
+                  <td>Reference:</td>
+                  <td>{customer.reference}</td>
+                </tr>
+                <tr>
+                  <td>Pay.terms:</td>
+                  <td>{customer.paymentTerm}</td>
+                </tr>
+                <tr>
+                  <td>Website:</td>
+                  <td>{customer.website}</td>
+                </tr>
+                <tr>
+                  <td>E-mail:</td>
+                  <td>{customer.email}</td>
+                </tr>
+                <tr>
+                  <td>Tel.no:</td>
+                  <td>{customer.phoneNumber}</td>
+                </tr>
+              </TableBody>
+            </Table>
             <AddButton state={editCustomer} setState={setEditCustomer} />
             {editCustomer && (
               <HiddenContainer state={editCustomer}>
