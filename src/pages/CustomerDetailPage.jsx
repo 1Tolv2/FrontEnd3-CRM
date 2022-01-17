@@ -25,7 +25,7 @@ export default function CustomerDetailPage() {
   useEffect(() => {
     if (token) {
       api
-        .getCustomer("GET", customerUrlEndpoint, token)
+        .getAndRemoveCustomerData("GET", customerUrlEndpoint, token)
         .then((res) => res.json())
         .then((data) => setCustomer(data));
     } else {
@@ -34,7 +34,7 @@ export default function CustomerDetailPage() {
   }, []);
 
   function handleOnDelete() {
-    api.getCustomer("DELETE", customerUrlEndpoint, token).then(() => navigate("/home"));
+    api.getAndRemoveCustomerData("DELETE", customerUrlEndpoint, token).then(() => navigate("/home"));
   }
 
   function handleOnSubmit(e) {
