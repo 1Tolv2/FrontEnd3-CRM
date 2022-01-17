@@ -4,7 +4,7 @@ import { createGlobalStyle } from "styled-components";
 
 import CustomerDetailPage from "./pages/CustomerDetailPage";
 import HomePage from "./pages/HomePage";
-import LoginPage from "./pages/LoginPage";
+import { LoginPage } from "./pages/LoginPage";
 import UserCreatePage from "./pages/UserCreatePage";
 import StartPage from "./pages/StartPage";
 import ModeSwitch from "./components/ModeSwitch";
