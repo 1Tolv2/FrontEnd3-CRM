@@ -10,7 +10,7 @@ import H1 from "../components/H1";
 import RedText from "../components/RedText";
 import Background from "../components/Background";
 
-export default function LoginPage() {
+export function LoginPage() {
   const [errorResponse, setErrorResponse] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
