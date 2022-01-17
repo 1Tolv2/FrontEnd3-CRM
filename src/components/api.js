@@ -9,16 +9,7 @@ function handleUser(endpoint, payload) {
   });
 }
 
-// function getCustomerList(token) {
-//   return fetch(`${baseUrl}api/v1/customers`, {
-//     headers: {
-//       "Content-Type": "application/json",
-//       Authorization: `Bearer ${token}`,
-//     },
-//   });
-// }
-
-function getCustomer(method, endpoint, token) {
+function getAndRemoveCustomerData(method, endpoint, token) {
   return fetch(`${baseUrl}${endpoint}`, {
     method: method,
     headers: {
@@ -28,10 +19,13 @@ function getCustomer(method, endpoint, token) {
   });
 }
 
-function createCustomer(payload) {
-  return fetch(`${baseUrl}api/v1/customers`, {
+function createCustomer(payload, token) {
+  return fetch(`${baseUrl}api/v1/customers/`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify(payload),
   });
 }
@@ -47,23 +41,11 @@ function editCustomer(endpoint, payload, token) {
   });
 }
 
-// function deleteCustomer(detailURL, token) {
-//   return fetch(detailURL, {
-//     method: "DELETE",
-//     headers: {
-//       "Content-Type": "application/json",
-//       Authorization: `Bearer ${token}`,
-//     },
-//   });
-// }
-
 const api = {
   handleUser,
-  // getCustomerList,
-  getCustomer,
+  getAndRemoveCustomerData,
   createCustomer,
   editCustomer,
-  // deleteCustomer,
 };
 
 export { api };
